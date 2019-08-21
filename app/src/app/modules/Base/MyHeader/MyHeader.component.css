@@ -1,0 +1,13 @@
+header {background-color: #1b1b1b; height: 55px; position: fixed; top: 0px; width: 100%; z-index: 1000;}
+header .logo {float: left; margin: 16px 16px 16px 12px;}
+header .logo a {color: var(--main-color);}
+header .logo a h3 {font-size: 20px; font-weight: 500; margin: 0;}
+
+@media only screen and (max-width: 760px) {
+	header .logo {
+		float: none;
+	    position: absolute;
+	    left: 50%;
+	    transform: translate(-50%);
+	}
+}

@@ -1,0 +1,21 @@
+<div class="admin">
+	<!-- <h3>ADMIN</h3> -->
+	<button id="btn-menu" (click)="toggleMenu()">
+		<i class="fa fa-bars" aria-hidden="true"></i>
+	</button>
+	<nav id="left-menu" [ngClass]="{'show': isShowMenu === true}">
+		<h1>
+			<a href="/admin/dashboard">ADMIN</a>
+			<i class="fa fa-times close" aria-hidden="true" (click)="toggleMenu()"></i>
+		</h1>
+		<a routerLink="./dashboard" routerLinkActive="active"
+		[routerLinkActiveOptions]="{ exact: true }">Dashboard</a>
+		<a routerLink="./classes" routerLinkActive="active">Classes</a>
+		<a routerLink="./students" routerLinkActive="active">Students</a>
+		<a routerLink="./teachers" routerLinkActive="active">Teachers</a>
+		<a routerLink="./subjects" routerLinkActive="active">Subjects</a>
+	</nav>
+	<div id="main-admin">
+		<router-outlet></router-outlet>
+	</div>
+</div>

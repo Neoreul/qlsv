@@ -1,0 +1,70 @@
+#btn-menu {
+	display: none;
+	position: fixed;
+    top: 0;
+    z-index: 1001;
+    margin: 13px 0;
+    background-color: transparent;
+    padding: 7px 10px;
+}
+
+#left-menu {
+	position: fixed;
+	top: 0;
+	left: 0;
+	/*padding: 10px;*/
+	width: 220px;
+	height: 100%;
+	background-color: #1d3642;
+}
+
+#left-menu h1 {
+	font-size: 20px;
+	font-weight: 500;
+	margin: 8px 0 23px 0;
+	margin-bottom: 23px;
+	position: relative;
+}
+#left-menu h1 a {
+	color: white;
+}
+#left-menu .close {
+	display: none;
+	position: absolute;
+    font-size: 16px;
+    right: 12px;
+    top: 13px;
+    color: white;
+}
+
+
+#left-menu a {
+	display: block;
+	padding: 10px 12px;
+	transition: all 0.3s;
+}
+#left-menu a:hover {
+	color: white;
+	padding-left: 12px;
+}
+
+#main-admin {
+	margin-left: 230px;
+	padding-bottom: 25px;
+}
+
+@media only screen and (max-width: 760px) {
+	#btn-menu {display: block;}
+
+	#left-menu {
+		transition: all 0.4s;
+		z-index: 1001;
+		left: -220px;
+	}
+
+	#left-menu.show {
+		left: 0;
+	}
+
+	#left-menu .close {display: block;}
+}

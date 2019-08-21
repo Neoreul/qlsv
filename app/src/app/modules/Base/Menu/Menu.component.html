@@ -1,0 +1,24 @@
+<div class="menu">
+	<ul *ngIf="!isLogged; else userLogged">
+		<li>
+			<a [routerLink]="['/sign-up']">
+				<span>Sign Up</span>
+			</a>
+		</li>
+		<li>
+			<a [routerLink]="['/login']">
+				<span>Login</span>
+			</a>
+		</li>
+	</ul>
+	<ng-template #userLogged>
+		<ul>
+			<li>
+				<a href="#">
+					<i class="fa fa-user-circle-o" aria-hidden="true" style="margin-right: 5px;"></i>
+					<span>Hi, {{user.first_name}}</span>
+				</a>
+			</li>
+		</ul>
+	</ng-template>
+</div>

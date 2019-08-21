@@ -1,0 +1,52 @@
+<div class="page">
+	<div class="head-content clearfix">
+		<h1 class="title">Management Classes</h1>
+		<div class="action">
+			<a class="button" [routerLink]="['/admin/classes/create']">+ Add Class</a>
+		</div>
+	</div>
+	<div class="body-content">
+
+		<table>
+			<tr>
+				<th>ID. </th>
+				<th>Class Name</th>
+				<th>Description</th>
+				<th>Status</th>
+				<th>Str-End Years</th>
+				<th>Last Modified</th>
+				<th>Action</th>
+			</tr>
+			<tr *ngFor="let item of classes">
+				<td>{{item.class_number}}</td>
+				<td>{{item.name}}</td>
+				<td>
+					<div class="description">
+						{{item.description}}
+					</div>
+				</td>
+				<td>
+					<!-- <select [ngModel]="item.status" [ngModelOptions]="{standalone: true}">
+						<option value="opening">Opening</option>
+						<option value="closed">Closed</option>
+					</select> -->
+					<span class="status">{{item.status}}</span>
+				</td>
+				<td>
+					<span>{{item.started_year}}</span>
+					<span>&nbsp;-&nbsp;</span>
+					<span>{{item.ended_year}}</span>
+				</td>
+				<!-- <td>{{item.date_modified | date: 'dd/MM/yyyy hh:mm:ss'}}</td> -->
+				<td dateFormat>{{item.date_modified}}</td>
+				<td>
+					<a [routerLink]="['/admin/classes', 'edit', item._id]" >
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						Edit
+					</a>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</div>

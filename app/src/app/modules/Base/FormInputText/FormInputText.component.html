@@ -1,0 +1,7 @@
+<div class="input">
+	<label [for]="id">
+		{{label}}
+		<span *ngIf="required" class="required">*</span>
+	</label>
+	<input [type]="type" [id]="id" name="ccc" [(ngModel)]="model">
+</div>

@@ -1,0 +1,79 @@
+<div class="login-signup">
+	<div class="head-content clearfix">
+		<div class="feature-img">
+		</div>
+		<h1 class="title">Sign Up</h1>
+	</div>
+	<div class="body-content">
+
+		<h3 class="sub-title">Let's register for the new member of My Courses</h3>
+
+		<form #registerForm = "ngForm" (ngSubmit)="onSubmit(registerForm.value)">
+			
+			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
+
+			<div class="input">
+				<label for="firstname">
+					First name
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="firstname" name="first_name" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="lastname">
+					Last name
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="lastname" name="last_name" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="username">
+					Username
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="username" name="username" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="email">
+					Email
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="email" name="email" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="phone">
+					Phone
+				</label>
+				<input type="text" id="phone" name="phone" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="password">
+					Password
+					<span class="required">*</span>
+				</label>
+				<input type="password" id="password" name="password" ngModel>
+			</div>
+
+			<div class="input">
+				<label for="confirm_password">
+					Confirm Password
+					<span class="required">*</span>
+				</label>
+				<input type="password" id="confirm_password" name="confirm_password" ngModel>
+			</div>
+
+			<div class="action">
+				<button class="button" type="submit">Register</button>
+				<p>
+					<span>Have an account? </span>
+					<a [routerLink]="['/login']">Login now!</a>	
+				</p>
+			</div>
+		</form>
+	</div>
+</div>

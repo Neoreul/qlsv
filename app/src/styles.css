@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+
+:root {
+	--main-color : #22977f;
+	--text       : #545353;
+	--border     : #c1c1c1;
+	--border-dark: #333333;
+	--danger     : #d91313;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Roboto', sans-serif;
+	font-size: 14px;
+	font-weight: 400;
+	color: var(--text);
+	background-color: white;
+}
+
+ul, ol {margin: 0; padding: 0; list-style-type: none;}
+
+a {color: var(--main-color); text-decoration: none;}
+
+button, a.button {color: white; background-color: var(--main-color); text-transform: uppercase; border: none; outline: 0; padding: 10px 25px;}
+
+a.button:hover {cursor: pointer;}
+
+span.required {color: var(--danger);}
+
+select {
+	font-family: 'Roboto', sans-serif; 
+	font-size: 14px;
+	/* Removes the default <select> styling */
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+
+	/* Positions background arrow image */
+	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
+	background-repeat: no-repeat;
+	background-position: 97%;
+}
+
+table {width: 100%; border-collapse: collapse; text-align: left;}
+table th {font-weight: 500; border-bottom: 1px solid #333; padding: 7px 5px; cursor: pointer;}
+table td {border-bottom: 1px solid #ccc; padding: 7px 5px; max-width: 200px;}
+table td input {padding: 2px 5px;}
+table td select {padding: 5px;}
+table td span.status {color: var(--main-color); text-transform: capitalize;}
+table td div.description {
+	line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.tabs {border-bottom: 1px solid #ccc;}
+.tabs li {float: left; padding: 7px 15px; background-color: rgba(193, 193, 193, 0.67); cursor: pointer;}
+.tabs li.active {background-color: var(--main-color); color: white;}
+
+.tab-content {display: none; margin-top: 25px;}
+.tab-content.show {display: block;}
+
+.link {color: var(--main-color); font-size: 13px;}
+
+.clearfix:before, .clearfix:after {content: '\0020'; display: block; overflow: hidden; visibility: hidden;
+    width:0; height: 0;}
+.clearfix:after {clear: both;}
+.clearfix {zoom: 1;}
+.sub-title {font-weight: 500;}
+
+#main {min-height: 460px; padding: 0 12px; margin-top: 65px;}
+
+.wrapper {max-width: 1200px; margin: 0 auto;}
+@media only screen and (max-width: 1200px) {
+	.wrapper {padding: 0 12px;}
+}
+
+form {max-width: 800px;}
+form div.action {margin-top: 25px;}
+form .notify {padding: 0; font-style: italic; color: var(--danger); opacity: 0; visibility: hidden; height: 0; transition: all 0.3s;}
+form .notify.success {color: var(--main-color); font-style: normal;}
+form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visible;}
+
+div.input {margin-bottom: 12px; position: relative; box-sizing: border-box;}
+div.input label {display: block; text-align: left; position: absolute; margin: 10px 8px; transition: all 0.3s;}
+div.input input, div.input select {font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; padding: 15px 7px 5px 7px; width: 100%; outline: none; border: 1px solid; border-color: var(--border); box-sizing: border-box; transition: all 0.3s;}
+div.input.focused input, div.input.active input {border-color: var(--main-color);}
+div.input.focused label, div.input.active label {margin: 2px 8px; font-size: 11px;}
+
+div.col2 {}
+div.col2 div.input {display: inline-block !important; vertical-align: top; width: 49% !important;}
+
+@media only screen and (max-width: 920px) {
+	div.col2 div.input {
+		display: block !important;
+		width: 100% !important;
+	}
+}
+
+div.head-content {}
+div.head-content h1.title {font-weight: 300;}
+div.head-content .feature-img {text-align: center; margin-top: 25px;}
+div.head-content .feature-img img {width: 110px; max-width: 100%;}
+
+div.body-content {margin-top: 25px;}
+
+#main-admin div.head-content h1.title {font-size: 22px;}
+#main-admin div.head-content {position: relative;}
+#main-admin div.head-content div.action {position: absolute; top: 20px; right: 0;}
+#main-admin div.head-content div.action a.button {
+	padding: 7px 15px;
+    font-size: 13px;
+    text-transform: capitalize;
+    background-color: #1d3642;
+}
+#main-admin div.body-content {margin-top: 15px;}
+
+#main-admin div.input {display: block; width: 100%; margin: 5px 0; padding: 0px;}
+#main-admin div.input p {width: 20%; text-align: right; padding: 15px; padding-top: 7px;}
+#main-admin div.input input, #main-admin div.input textarea {width: 80%; max-width: 500px;}
+#main-admin div.input textarea {height: 150px; outline: none; padding: 7px; box-sizing: border-box;}
+#main-admin div.input textarea:focus {border-color: #5fbaea;}
+#main-admin div.input select { max-width: 300px; padding: 11px 20px 11px 10px; border: 1px solid #cccccc; outline: none; margin: 0; /*-webkit-appearance: none;*/ }
+#main-admin div.input select:focus {border-color: #5fbaea;}
+#main-admin div.input p, #main-admin div.input input {display: inline-block; vertical-align: top; padding: 10px 7px; width: 300px;}
+#main-admin div.input label.item {font-weight: 300; padding: 5px;}
+#main-admin div.input .required {color: red; }
+#main-admin div.input .invalid {position: relative; top: 4px; padding-left: 2px;}
+
+#main-admin div.input label {position: static; margin-left: 0; display: block; margin-bottom: 5px; font-weight: 500; width: 100%; text-align: left;}
+#main-admin div.input label > input {width: auto;}
+
+@media only screen and (max-width: 920px) {
+	#main-admin div.input { padding: 0 10px 10px 0; margin: 0; white-space: nowrap; }
+    #main-admin div.input p { display: block; padding: 0; margin: 0; text-align: left; }
+    #main-admin div.input input, #main-admin div.input textarea { display: block; width: 100%; }
+    #main-admin div.input input[type=checkbox] { display: inline-block; }
+    #main-admin div.input .invalid { display: block; font-style: italic; }
+}
+
+@media only screen and (max-width: 760px) {
+	#main-admin {margin-left: 0 !important;}
+}

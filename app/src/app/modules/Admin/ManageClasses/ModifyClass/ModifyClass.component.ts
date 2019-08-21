@@ -1,0 +1,91 @@
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
+import { ClassService } from '../ManageClasses.service';
+
+@Component({
+	selector: 'modify-class',
+	templateUrl: './ModifyClass.component.html',
+	styleUrls: ['./ModifyClass.component.css']
+})
+
+export class ModifyClassComponent implements OnInit, OnChanges {
+	title    : string;
+	classId  : string;
+	classItem: Object = {};
+	isError  : boolean = false;
+	notify   : string;
+	isDone   : boolean = false;
+
+	constructor(
+		private classService: ClassService,
+		private activatedRoute: ActivatedRoute,
+		private router: Router) {
+		
+	}
+
+	ngOnInit() {
+		this.checkMode();
+	}
+
+	ngOnChanges() {
+		this.checkMode();
+	}
+
+	checkMode() {
+		this.classId = this.activatedRoute.snapshot.paramMap.get('id');
+		// console.log(this.classId);
+
+		if(this.classId && !isNaN(Number(this.classId))) {
+			this.title = "Edit Class";
+			this.getClass();
+		} else {
+			this.classItem = {};
+			this.title = "Create Class";
+		}
+	}
+
+	getClass() {
+		this.classService.get(Number(this.classId))
+			.then(resData => {
+				// console.log("class: ", resData);
+				if(resData) {
+					this.classItem = resData;
+
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
+	createOrModify(isContinue: boolean=false) {
+		this.notify = "";
+		this.isError= false;
+		this.isDone = false;
+
+		// console.log(this.classItem);
+
+		this.classService.createOrModify(this.classItem)
+			.then(resData => {
+				// console.log("create or modify class: ", resData);
+
+				if(resData.ok && resData.ok === 1) {
+					this.isDone = true;
+					if(!isContinue) {
+						this.classItem = {};
+						this.router.navigate(['admin/classes']);
+					}
+				}
+
+				if(resData.err && resData.err === 1) {
+					this.notify = resData.msg;
+					this.isError= true;
+				}
+
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+}

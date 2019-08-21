@@ -1,0 +1,77 @@
+<div class="page">
+	<div class="head-content clearfix">
+		<h1 class="title">{{title}}</h1>
+
+		<div class="action">
+			<a class="button" (click)="createOrModify()">Save</a>
+			<a class="button" (click)="createOrModify(true)">Save And Continue</a>
+		</div>
+	</div>
+	<div class="body-content">
+
+		<form>
+			
+			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
+			<div class="notify success" [ngClass]="{'active': isDone}">Saved!</div>
+
+			<div class="input">
+				<label for="class_number">
+					Class Number
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="class_number" name="class_number" [(ngModel)]="classItem.class_number">
+			</div>
+
+			<div class="input">
+				<label for="name">
+					Name
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="name" name="name" [(ngModel)]="classItem.name">
+			</div>
+
+			<div class="col2">
+				<div class="input">
+					<label for="started_year">
+						Started Year
+						<span class="required">*</span>
+					</label>
+					<input type="text" id="started_year" name="started_year" [(ngModel)]="classItem.started_year">
+				</div>
+				<div class="input">
+					<label for="ended_year">
+						Ended Year
+						<span class="required">*</span>
+					</label>
+					<input type="text" id="ended_year" name="ended_year" [(ngModel)]="classItem.ended_year">
+				</div>
+			</div>
+
+			<!-- TODO: select -->
+			<div class="input">
+				<label for="class_number">
+					Homeroom Teacher
+					<span class="required">*</span>
+				</label>
+				<input type="text" id="homeroom_teacher" name="homeroom_teacher" [(ngModel)]="classItem.homeroom_teacher">
+			</div>
+
+			<div class="input">
+				<label for="description">
+					Description
+				</label>
+				<textarea rows="5" id="description" name="description" [(ngModel)]="classItem.description"></textarea>
+			</div>
+
+			<div class="input">
+				<label for="status">
+					Status
+				</label>
+				<select [(ngModel)]="classItem.status" [ngModelOptions]="{standalone: true}">
+					<option value="opening">Opening</option>
+					<option value="closed">Closed</option>
+				</select>
+			</div>
+		</form>
+	</div>
+</div>
