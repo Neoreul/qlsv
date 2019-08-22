@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { SubjectService } from '../ManageSubjects.service';
+import { StudentService } from '../../ManageStudents/ManageStudents.service';
 
 @Component({
 	selector: 'modify-subject',
@@ -17,9 +18,12 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	notify   : string;
 	isDone   : boolean = false;
 	tab      : string='general';
+	students : Object[] = [];
+	removedStudents: Object[] = [];
 
 	constructor(
 		private subjectService: SubjectService,
+		private studentService: StudentService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router) {
 		
@@ -53,10 +57,11 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	getSubject() {
 		this.subjectService.get(Number(this.subjectId))
 			.then(resData => {
-				// console.log("subject: ", resData);
+				console.log("subject: ", resData);
 				if(resData) {
 					this.subjectItem = resData;
 
+					this.getStudents();
 				}
 			})
 			.catch(err => {
@@ -64,12 +69,31 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 			});
 	}
 
+	getStudents() {
+		this.studentService.getAll({ subject_id: this.subjectItem["_id"] })
+			.then(resData => {
+				this.students = resData.students;
+				console.log(this.students);
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
+	removeStudent(id: number){
+		this.removedStudents.push(id);
+		this.students = this.students.filter((s) => {
+			return s["_id"] != id;
+		});
+	}
+
 	createOrModify(isContinue: boolean=false) {
 		this.notify = "";
 		this.isError= false;
 		this.isDone = false;
 
-		// console.log(this.subjectItem);
+		this.subjectItem["students"] = this.removedStudents;
+		console.log(this.subjectItem);
 
 		this.subjectService.createOrModify(this.subjectItem)
 			.then(resData => {

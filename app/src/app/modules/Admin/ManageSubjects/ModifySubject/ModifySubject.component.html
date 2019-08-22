@@ -94,7 +94,16 @@
 			</div>
 
 			<div class="tab-content" [ngClass]="{'show': tab === 'students'}">
-				
+				<ul class="list-checkbox">
+					<li *ngFor="let student of students">
+						<label class="container">
+							<span class="student-number">{{student.student_number}}</span>
+							<span class="student-name">{{student.first_name}} {{student.last_name}}</span>
+							<input type="checkbox" [name]="student._id" checked="true" (change)="removeStudent(student._id)" value="student._id">
+							<span class="checkmark"></span>
+						</label>
+					</li>
+				</ul>
 			</div>
 
 		</form>

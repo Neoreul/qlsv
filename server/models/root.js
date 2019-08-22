@@ -73,7 +73,7 @@ class RootModel {
 
 	async update(query={}, update={}, options={}) {
 		try {
-			update.date_modified = this.getDate();
+			update.date_modified = dateString();
 			return await this.Model.update(query, update, options);
 		} catch(err) {
 			console.log(err);
@@ -136,6 +136,17 @@ class RootModel {
 		try {
 			return await this.Model.countDocuments();
 		} catch(err) {
+			return null;
+		}
+	}
+
+	async aggregateViaLookup(options) {
+		try {
+			if(_.isEmpty(options)) return null;
+
+			return await this.Model.aggregate.lookup(options);
+		} catch(err) {
+			console.log(err);
 			return null;
 		}
 	}

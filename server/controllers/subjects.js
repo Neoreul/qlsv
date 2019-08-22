@@ -1,6 +1,7 @@
 let RootRouter = require('../helpers/root-router');
 
 let Subject    = require('../models/subjects');
+let Student    = require('../models/students');
 
 let validUserInput = require('../middlewares/valid-user-input');
 
@@ -82,13 +83,23 @@ class SubjectRouter extends RootRouter {
 					return;
 				}
 
+				let updateStudents = await Student.update({
+					_id: {
+						$in: req.body.students
+					}
+				}, {
+					$pull: { subjects: { $in: Number(req.body._id) } }
+				}, {
+					multi: true
+				});
+
 				let updateRecord = await Subject.updateOne({
 					_id: Number(req.body._id)
 				}, {
 					$set: req.ipSubject
 				});
 
-				if(!updateRecord) {
+				if(!updateRecord || !updateStudents) {
 					res.send({
 						err: 1,
 						msg: "Can not update this subject"
