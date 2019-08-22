@@ -22,7 +22,7 @@ class Subject extends Root {
 	constructor() {
 		super();
 
-		let model = "users";
+		let model = "subjects";
 		let counterOptions = {
 			name    : model,
 			field   : '_id',

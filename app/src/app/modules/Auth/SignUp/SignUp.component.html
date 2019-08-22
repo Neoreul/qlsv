@@ -12,7 +12,7 @@
 			
 			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="firstname">
 					First name
 					<span class="required">*</span>
@@ -20,7 +20,7 @@
 				<input type="text" id="firstname" name="first_name" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="lastname">
 					Last name
 					<span class="required">*</span>
@@ -28,7 +28,7 @@
 				<input type="text" id="lastname" name="last_name" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="username">
 					Username
 					<span class="required">*</span>
@@ -36,7 +36,7 @@
 				<input type="text" id="username" name="username" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="email">
 					Email
 					<span class="required">*</span>
@@ -44,14 +44,14 @@
 				<input type="text" id="email" name="email" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="phone">
 					Phone
 				</label>
 				<input type="text" id="phone" name="phone" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="password">
 					Password
 					<span class="required">*</span>
@@ -59,7 +59,7 @@
 				<input type="password" id="password" name="password" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="confirm_password">
 					Confirm Password
 					<span class="required">*</span>

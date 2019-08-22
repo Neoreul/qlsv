@@ -3,6 +3,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { StudentService } from '../ManageStudents.service';
 import { ClassService } from '../../ManageClasses/ManageClasses.service';
+import { SubjectService } from '../../ManageSubjects/ManageSubjects.service';
 
 @Component({
 	selector: 'modify-student',
@@ -19,10 +20,12 @@ export class ModifyStudentComponent implements OnInit, OnChanges {
 	isDone   : boolean = false;
 	tab      : string = 'general';
 	classes  : Object[];
+	subjects : Object[];
 
 	constructor(
 		private studentService: StudentService,
 		private classService: ClassService,
+		private subjectService: SubjectService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router) {
 		this.getClasses();
@@ -50,6 +53,7 @@ export class ModifyStudentComponent implements OnInit, OnChanges {
 		} else {
 			this.studentItem = {};
 			this.title = "Create Student";
+			this.getSubjects();
 		}
 	}
 
@@ -60,6 +64,7 @@ export class ModifyStudentComponent implements OnInit, OnChanges {
 				if(resData) {
 					this.studentItem = resData;
 
+					this.getSubjects();
 				}
 			})
 			.catch(err => {
@@ -78,12 +83,45 @@ export class ModifyStudentComponent implements OnInit, OnChanges {
 			})
 	}
 
+	getSubjects() {
+		this.subjectService.getAll()
+			.then(resData => {
+				if(resData.subjects) {
+					this.subjects = resData.subjects;
+
+					if(this.studentId) {
+						this.subjects.forEach(s => {
+							s["checked"] = false;
+
+							for(let i = 0; i < this.studentItem["subjects"].length; i++) {
+								if(this.studentItem["subjects"][i] === s["_id"]) {
+									s["checked"] = true;
+								}
+							}
+						});
+					}
+
+					// console.log(this.subjects);
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
 	createOrModify(isContinue: boolean=false) {
 		this.notify = "";
 		this.isError= false;
 		this.isDone = false;
 
-		console.log(this.studentItem);
+		this.studentItem["subjects"] = [];
+		this.subjects.forEach(s => {
+			if(s["checked"] == true) {
+				this.studentItem["subjects"].push(s["_id"]);
+			}
+		});
+
+		// console.log(this.studentItem);
 
 		this.studentService.createOrModify(this.studentItem)
 			.then(resData => {
@@ -106,5 +144,19 @@ export class ModifyStudentComponent implements OnInit, OnChanges {
 			.catch(err => {
 				console.log(err);
 			});
+	}
+
+	delete() {
+		let isConfirm = confirm("Are you sure delete this student?");
+        if(isConfirm){
+            this.studentService.remove(Number(this.studentId))
+            	.then(resData => {
+            		// console.log(resData);
+            		this.router.navigate(['admin/students']);
+            	})
+            	.catch(err => {
+            		console.log(err);
+            	});
+        }
 	}
 }

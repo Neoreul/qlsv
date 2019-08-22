@@ -2,6 +2,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { ClassService } from '../ManageClasses.service';
+import { TeacherService } from '../../ManageTeachers/ManageTeachers.service';
 
 @Component({
 	selector: 'modify-class',
@@ -16,12 +17,14 @@ export class ModifyClassComponent implements OnInit, OnChanges {
 	isError  : boolean = false;
 	notify   : string;
 	isDone   : boolean = false;
+	teachers : Object[];
 
 	constructor(
 		private classService: ClassService,
+		private teacherService: TeacherService,
 		private activatedRoute: ActivatedRoute,
 		private router: Router) {
-		
+		this.getTeachers();
 	}
 
 	ngOnInit() {
@@ -59,6 +62,18 @@ export class ModifyClassComponent implements OnInit, OnChanges {
 			});
 	}
 
+	getTeachers() {
+		this.teacherService.getAll()
+			.then(resData => {
+				if(resData.teachers) {
+					this.teachers = resData.teachers;
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+	}
+
 	createOrModify(isContinue: boolean=false) {
 		this.notify = "";
 		this.isError= false;
@@ -87,5 +102,19 @@ export class ModifyClassComponent implements OnInit, OnChanges {
 			.catch(err => {
 				console.log(err);
 			});
+	}
+
+	delete() {
+		let isConfirm = confirm("Are you sure delete this class?");
+        if(isConfirm){
+            this.classService.remove(Number(this.classId))
+            	.then(resData => {
+            		// console.log(resData);
+            		this.router.navigate(['admin/classes']);
+            	})
+            	.catch(err => {
+            		console.log(err);
+            	});
+        }
 	}
 }

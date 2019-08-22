@@ -11,7 +11,7 @@
 			
 			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="username">
 					Username
 					<span class="required">*</span>
@@ -19,7 +19,7 @@
 				<input type="text" id="username" name="username" ngModel>
 			</div>
 
-			<div class="input">
+			<div class="input" inputText>
 				<label for="password">
 					Password
 					<span class="required">*</span>

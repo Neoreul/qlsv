@@ -7,6 +7,10 @@ import { ManageClassesComponent }  from './ManageClasses/ManageClasses/ManageCla
 import { ModifyClassComponent }    from './ManageClasses/ModifyClass/ModifyClass.component';
 import { ManageStudentsComponent } from './ManageStudents/ManageStudents/ManageStudents.component';
 import { ModifyStudentComponent }  from './ManageStudents/ModifyStudent/ModifyStudent.component';
+import { ManageTeacherComponent }  from './ManageTeachers/ManageTeachers/ManageTeachers.component';
+import { ModifyTeacherComponent }  from './ManageTeachers/ModifyTeacher/ModifyTeacher.component';
+import { ManageSubjectsComponent } from './ManageSubjects/ManageSubjects/ManageSubjects.component';
+import { ModifySubjectComponent }  from './ManageSubjects/ModifySubject/ModifySubject.component';
 
 import { AuthGuard }               from '../Auth/Auth.guard';
 
@@ -26,7 +30,13 @@ const adminRoutes: Routes = [
 					{ path: 'classes/edit/:id', component: ModifyClassComponent },
 					{ path: 'students',         component: ManageStudentsComponent },
 					{ path: 'students/create',  component: ModifyStudentComponent },
-					{ path: 'students/edit/:id',component: ModifyStudentComponent }
+					{ path: 'students/edit/:id',component: ModifyStudentComponent },
+					{ path: 'teachers',         component: ManageTeacherComponent },
+					{ path: 'teachers/create',  component: ModifyTeacherComponent },
+					{ path: 'teachers/edit/:id',component: ModifyTeacherComponent },
+					{ path: 'subjects',         component: ManageSubjectsComponent },
+					{ path: 'subjects/create',  component: ModifySubjectComponent },
+					{ path: 'subjects/edit/:id',component: ModifySubjectComponent },
 				]
 			}
 		]

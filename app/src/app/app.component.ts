@@ -10,44 +10,11 @@ export class AppComponent implements AfterViewInit {
 	constructor(
         private elRef: ElementRef,
         private router: Router) {
-
-        router.events.subscribe((val) => {
-            this.initialFrontEnd();
-        });
         
     }
 
+    // TODO: lazy load
     initialFrontEnd() {
-
-        const mainAdminElm = document.getElementById('main-admin');
-        if(mainAdminElm != null) return;
-
-        // Input text
-        // TODO: InputTextDirective
-        const inputList = document.getElementsByTagName('input');
-            
-        for(let i = 0; i < inputList.length; i++) {
-            if(inputList[i].parentElement.className == "input") {
-                inputList[i].addEventListener('change', () => {
-                    if(inputList[i].value == "") {
-                        // Con loi
-                        if(inputList[i].parentElement.classList.value.indexOf('active') != -1) {
-                            inputList[i].parentElement.classList.remove('active');
-                        }
-                    } else {
-                        inputList[i].parentElement.classList.add('active');
-                    }
-                });
-
-                inputList[i].addEventListener('focus', () => {
-                    inputList[i].parentElement.classList.toggle('focused');
-                });
-
-                inputList[i].addEventListener('blur', () => {
-                    inputList[i].parentElement.classList.toggle('focused');
-                });
-            }
-        }
 
         // Page script
         const mainElm    = document.getElementById("main");

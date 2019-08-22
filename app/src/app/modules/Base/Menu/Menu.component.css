@@ -1,5 +1,5 @@
 .menu {float: right; margin: 19px 0;}
 .menu ul {}
 .menu ul li {display: inline-block; vertical-align: top;}
-.menu ul li a {color: white; padding: 7px 15px;}
+.menu ul li a {color: white; padding: 7px 15px; cursor: pointer;}
 .menu ul li a:hover {color: var(--main-color);}

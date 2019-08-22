@@ -7,6 +7,8 @@ import { AuthRoutingModule } from './AuthRouting.module';
 import { LoginComponent } from './Login/Login.component';
 import { SignUpComponent } from './SignUp/SignUp.component';
 
+import { InputDirective } from '../Utils/InputText/InputText.directive';
+
 import { AuthService } from './Auth.services';
 
 @NgModule({
@@ -16,6 +18,7 @@ import { AuthService } from './Auth.services';
 		AuthRoutingModule
 	],
 	declarations: [
+		InputDirective,
 		LoginComponent,
 		SignUpComponent
 	],

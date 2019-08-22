@@ -1,0 +1,203 @@
+<div class="page">
+	<div class="head-content clearfix">
+		<h1 class="title">{{title}}</h1>
+
+		<div class="action">
+			<a class="button" *ngIf="teacherId" (click)="delete()">Delete</a>
+			<a class="button" (click)="createOrModify()">Save</a>
+			<a class="button" (click)="createOrModify(true)">Save And Continue</a>
+		</div>
+	</div>
+	<div class="body-content">
+
+		<form>
+			
+			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
+			<div class="notify success" [ngClass]="{'active': isDone}">Saved!</div>
+
+			<ul class="tabs clearfix">
+				<li [ngClass]="{'active': tab === 'general'}" (click)="changeTab('general')">General</li>
+				<li [ngClass]="{'active': tab === 'address'}" (click)="changeTab('address')">Address</li>
+				<li [ngClass]="{'active': tab === 'subjects'}" (click)="changeTab('subjects')">Subjects</li>
+			</ul>
+
+			<div class="tab-content" [ngClass]="{'show': tab === 'general'}">
+
+				<div class="input">
+					<label for="teacher_number">
+						Teacher Number
+						<span class="required">*</span>
+					</label>
+					<input type="text" id="teacher_number" name="teacher_number" [(ngModel)]="teacherItem.teacher_number">
+				</div>
+
+				<div class="col2">
+
+					<div class="input">
+						<label for="first_name">
+							First Name
+							<span class="required">*</span>
+						</label>
+						<input type="text" id="first_name" name="first_name" [(ngModel)]="teacherItem.first_name">
+					</div>
+
+					<div class="input">
+						<label for="last_name">
+							Last Name
+							<span class="required">*</span>
+						</label>
+						<input type="text" id="last_name" name="last_name" [(ngModel)]="teacherItem.last_name">
+					</div>
+
+				</div>
+
+				<div class="col2">
+					<div class="input">
+						<label for="email">
+							Email
+							<span class="required">*</span>
+						</label>
+						<input type="text" id="email" name="email" [(ngModel)]="teacherItem.email">
+					</div>
+
+					<div class="input">
+						<label for="age">
+							Age
+						</label>
+						<select [(ngModel)]="teacherItem.age" [ngModelOptions]="{standalone: true}">
+							<option value="23">23</option>
+							<option value="24">24</option>
+							<option value="25">25</option>
+							<option value="26">26</option>
+							<option value="27">27</option>
+							<option value="28">28</option>
+							<option value="29">29</option>
+							<option value="30">30</option>
+							<option value="31">31</option>
+							<option value="32">32</option>
+							<option value="33">33</option>
+							<option value="34">34</option>
+							<option value="35">35</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="col2">
+					<div class="input">
+						<label for="faculty">
+							Faculty
+						</label>
+						<select [(ngModel)]="teacherItem.faculty" [ngModelOptions]="{standalone: true}">
+							<option value="it">Information Teachnology</option>
+							<option value="ms">Mathematics and Statistics</option>
+						</select>
+					</div>
+					<div class="input">
+						<label for="marjor">
+							Marjor
+						</label>
+						<select [(ngModel)]="teacherItem.marjor" [ngModelOptions]="{standalone: true}">
+							<option value="knpm">Software Engineer</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="input">
+					<label for="status">
+						Status
+						<span class="required">*</span>
+					</label>
+					<select [(ngModel)]="teacherItem.status" [ngModelOptions]="{standalone: true}">
+						<option value="teaching">Teaching</option>
+						<option value="leaved">Leaved</option>
+					</select>
+				</div>
+
+			</div>
+
+
+			<div class="tab-content" [ngClass]="{'show': tab === 'address'}">
+				
+				<div class="input">
+					<label for="special_name">
+						Special Name
+					</label>
+					<input type="text" id="special_name" name="special_name" [(ngModel)]="teacherItem.special_name">
+				</div>
+
+				<div class="input">
+					<label for="street_address1">
+						Street Address
+					</label>
+					<input type="text" id="street_address1" name="street_address1" [(ngModel)]="teacherItem.street_address1">
+				</div>
+
+				<div class="input">
+					<label for="street_address2">
+						Apartment, Floor, etc.
+					</label>
+					<input type="text" id="street_address2" name="street_address2" [(ngModel)]="teacherItem.street_address2">
+				</div>
+
+				<div class="col2">
+
+					<div class="input">
+						<label for="city">
+							City
+						</label>
+						<input type="text" id="city" name="city" [(ngModel)]="teacherItem.city">
+					</div>
+
+					<div class="input">
+						<label for="state">
+							State
+						</label>
+						<select [(ngModel)]="teacherItem.state" [ngModelOptions]="{standalone: true}">
+							<option value="AL">Alabama</option>
+							<option value="AK">Alaska</option>
+							<option value="CA">California</option>
+							<option value="FL">Florida</option>
+							<option value="HI">Hawaii</option>
+							<option value="IN">Indiana</option>
+							<option value="KY">Kentucky</option>
+							<option value="MI">Michigan</option>
+							<option value="NV">Nevada</option>
+							<option value="OH">Ohio</option>
+						</select>
+					</div>
+
+				</div>
+
+				<div class="col2">
+
+					<div class="input">
+						<label for="zipcode">
+							Zipcode
+						</label>
+						<input type="text" id="zipcode" name="zipcode" [(ngModel)]="teacherItem.zipcode">
+					</div>
+					<div class="input">
+						<label for="phone">
+							Phone
+						</label>
+						<input type="text" id="phone" name="phone" [(ngModel)]="teacherItem.phone">
+					</div>
+				</div>
+
+			</div>
+
+			<div class="tab-content" [ngClass]="{'show': tab === 'subjects'}">
+				
+				<!-- Move to Directive ListCheckbox -->
+				<ul class="list-checkbox">
+					<li *ngFor="let subject of subjects">
+						<input type="checkbox" [name]="subject._id" [(ngModel)]="subject.checked" value="subject._id">
+						<span>{{subject.name}}</span>
+					</li>
+				</ul>
+				
+			</div>
+
+		</form>
+	</div>
+</div>

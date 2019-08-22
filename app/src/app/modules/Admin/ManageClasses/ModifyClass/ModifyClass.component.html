@@ -3,6 +3,7 @@
 		<h1 class="title">{{title}}</h1>
 
 		<div class="action">
+			<a class="button" *ngIf="classId" (click)="delete()">Delete</a>
 			<a class="button" (click)="createOrModify()">Save</a>
 			<a class="button" (click)="createOrModify(true)">Save And Continue</a>
 		</div>
@@ -36,24 +37,46 @@
 						Started Year
 						<span class="required">*</span>
 					</label>
-					<input type="text" id="started_year" name="started_year" [(ngModel)]="classItem.started_year">
+					<select [(ngModel)]="classItem.started_year" [ngModelOptions]="{standalone: true}">
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+					</select>
 				</div>
 				<div class="input">
 					<label for="ended_year">
 						Ended Year
 						<span class="required">*</span>
 					</label>
-					<input type="text" id="ended_year" name="ended_year" [(ngModel)]="classItem.ended_year">
+					<select [(ngModel)]="classItem.ended_year" [ngModelOptions]="{standalone: true}">
+						<option value="2014">2014</option>
+						<option value="2015">2015</option>
+						<option value="2016">2016</option>
+						<option value="2017">2017</option>
+						<option value="2018">2018</option>
+						<option value="2019">2019</option>
+						<option value="2020">2020</option>
+						<option value="2021">2021</option>
+						<option value="2022">2022</option>
+					</select>
 				</div>
 			</div>
 
 			<!-- TODO: select -->
 			<div class="input">
-				<label for="class_number">
+				<label for="homeroom_teacher">
 					Homeroom Teacher
 					<span class="required">*</span>
 				</label>
-				<input type="text" id="homeroom_teacher" name="homeroom_teacher" [(ngModel)]="classItem.homeroom_teacher">
+				<select [(ngModel)]="classItem.homeroom_teacher" [ngModelOptions]="{standalone: true}">
+					<option *ngFor="let teacher of teachers" [value]="teacher._id">{{teacher.first_name}} {{teacher.last_name}}</option>
+				</select>
 			</div>
 
 			<div class="input">
@@ -66,6 +89,7 @@
 			<div class="input">
 				<label for="status">
 					Status
+					<span class="required">*</span>
 				</label>
 				<select [(ngModel)]="classItem.status" [ngModelOptions]="{standalone: true}">
 					<option value="opening">Opening</option>

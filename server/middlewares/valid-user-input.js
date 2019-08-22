@@ -182,6 +182,9 @@ exports.createOrModifyStudent = (req, res, next) => {
 						}
 					}
 				}
+			},
+			cb=>{
+				(_.isEmpty(student.status)) ? cb("Status is required", null) : cb(null, "ok");
 			}
 		], (err, result) => {
 			if(err) {
@@ -283,7 +286,7 @@ exports.createOrModifyTeacher = (req, res, next) => {
 
 		async.parallel([
 			cb=>{
-				(_.isEmpty(teacher.student_number)) ? cb("Teacher number is required", null) : cb(null, "ok");
+				(_.isEmpty(teacher.teacher_number)) ? cb("Teacher number is required", null) : cb(null, "ok");
 			},
 			cb=>{
 				if(_.isEmpty(teacher.first_name)) {
@@ -305,6 +308,9 @@ exports.createOrModifyTeacher = (req, res, next) => {
 				} else {
 					validator.isEmail(teacher.email) ? cb(null, "ok") : cb("Your email is invalid", null);
 				}
+			},
+			cb=>{
+				(_.isEmpty(teacher.status)) ? cb("Status is required", null) : cb(null, "ok");
 			}
 		], (err, result) => {
 			if(err) {
@@ -331,14 +337,13 @@ exports.createOrModifyTeacher = (req, res, next) => {
 					city           : "",
 					zipcode        : "",
 					phone          : "",
-					status         : ""
+					status         : teacher.status
 				};
 
 				if(teacher.age) { ipTeacher.age = teacher.age; }
 				if(teacher.faculty) { ipTeacher.faculty = teacher.faculty; }
 				if(teacher.marjor) { ipTeacher.marjor = teacher.marjor; }
 				if(teacher.subjects) { ipTeacher.subjects = teacher.subjects; }
-				if(teacher.status) { ipTeacher.status = teacher.status; }
 
 				if(teacher.special_name) { ipTeacher.special_name = teacher.special_name; }
 				if(teacher.street_address1) { ipTeacher.street_address1 = teacher.street_address1; }
@@ -349,6 +354,7 @@ exports.createOrModifyTeacher = (req, res, next) => {
 				if(req.body.phone) { ipTeacher.phone = teacher.phone; }
 
 				req.ipTeacher = ipTeacher;
+
 				next();
 			}
 		});
@@ -374,7 +380,7 @@ exports.createOrModifyClass = (req, res, next) => {
 				(_.isEmpty(data.name)) ? cb("Class name is required", null) : cb(null, "ok");
 			},
 			cb=>{
-				(_.isEmpty(data.homeroom_teacher)) ? cb("Homeroom Teacher is required", null) : cb(null, "ok");
+				(isNaN(Number(data.homeroom_teacher))) ? cb("Homeroom Teacher is invalid", null) : cb(null, "ok");
 			},
 			cb=>{
 				(_.isEmpty(data.started_year)) ? cb("Start year is required", null) : cb(null, "ok");
@@ -407,7 +413,7 @@ exports.createOrModifyClass = (req, res, next) => {
 				let ipClass = {
 					class_number    : _.trim(data.class_number),
 					name            : _.trim(data.name),
-					homeroom_teacher: data.homeroom_teacher,
+					homeroom_teacher: Number(data.homeroom_teacher),
 					started_year    : data.started_year,
 					ended_year      : data.ended_year,
 					status          : data.status,

@@ -8,6 +8,10 @@ import { ManageClassesComponent }  from './ManageClasses/ManageClasses/ManageCla
 import { ModifyClassComponent }    from './ManageClasses/ModifyClass/ModifyClass.component';
 import { ManageStudentsComponent } from './ManageStudents/ManageStudents/ManageStudents.component';
 import { ModifyStudentComponent }  from './ManageStudents/ModifyStudent/ModifyStudent.component';
+import { ManageTeacherComponent }  from './ManageTeachers/ManageTeachers/ManageTeachers.component';
+import { ModifyTeacherComponent }  from './ManageTeachers/ModifyTeacher/ModifyTeacher.component';
+import { ManageSubjectsComponent } from './ManageSubjects/ManageSubjects/ManageSubjects.component';
+import { ModifySubjectComponent }  from './ManageSubjects/ModifySubject/ModifySubject.component';
 
 import { DateFormatDirective }     from '../Utils/DateFormat/DateFormat.directive';
 
@@ -16,6 +20,8 @@ import { AdminRoutingModule }      from './AdminRouting.module';
 import { AuthGuard }               from '../Auth/Auth.guard';
 import { ClassService }            from './ManageClasses/ManageClasses.service';
 import { StudentService }          from './ManageStudents/ManageStudents.service';
+import { TeacherService }          from './ManageTeachers/ManageTeachers.service';
+import { SubjectService }          from './ManageSubjects/ManageSubjects.service';
 
 @NgModule({
 	imports: [
@@ -24,18 +30,24 @@ import { StudentService }          from './ManageStudents/ManageStudents.service
 		AdminRoutingModule
 	],
 	declarations: [
+		DateFormatDirective,
 		AdminComponent,
 		AdminDashboardComponent,
 		ManageClassesComponent,
 		ModifyClassComponent,
 		ManageStudentsComponent,
 		ModifyStudentComponent,
-		DateFormatDirective
+		ManageTeacherComponent,
+		ModifyTeacherComponent,
+		ManageSubjectsComponent,
+		ModifySubjectComponent
 	],
 	providers: [
 		AuthGuard,
 		ClassService,
-		StudentService
+		StudentService,
+		TeacherService,
+		SubjectService
 	]
 })
 

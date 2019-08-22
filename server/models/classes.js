@@ -6,7 +6,7 @@ let config   = require('../config');
 let classSchema = new Schema({
 	class_number  : String,
 	name          : String,
-	homeroom_teacher: String,
+	homeroom_teacher: Number,
 	started_year  : String,
 	ended_year    : String,
 	

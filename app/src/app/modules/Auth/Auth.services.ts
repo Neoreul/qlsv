@@ -64,6 +64,7 @@ export class AuthService {
 		return this.resfulAPI.post(url).then(() => {
 			this.isLoggedIn = false;
 			this.cookieService.delete(AppConfig.COOKIE_VALUE.SESSIONID);
+			this.cookieService.delete(AppConfig.COOKIE_VALUE.USER);
 		});
 	}
 }

@@ -36,6 +36,8 @@ select {
 	-moz-appearance: none;
 	appearance: none;
 
+	background-color: white;
+
 	/* Positions background arrow image */
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
 	background-repeat: no-repeat;
@@ -83,6 +85,10 @@ form div.action {margin-top: 25px;}
 form .notify {padding: 0; font-style: italic; color: var(--danger); opacity: 0; visibility: hidden; height: 0; transition: all 0.3s;}
 form .notify.success {color: var(--main-color); font-style: normal;}
 form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visible;}
+
+.list-checkbox {}
+.list-checkbox li {}
+.list-checkbox li input[type="checkbox"] {position: relative; top: 2px;}
 
 div.input {margin-bottom: 12px; position: relative; box-sizing: border-box;}
 div.input label {display: block; text-align: left; position: absolute; margin: 10px 8px; transition: all 0.3s;}

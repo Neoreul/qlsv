@@ -3,6 +3,7 @@
 		<h1 class="title">{{title}}</h1>
 
 		<div class="action">
+			<a class="button" *ngIf="studentId" (click)="delete()">Delete</a>
 			<a class="button" (click)="createOrModify()">Save</a>
 			<a class="button" (click)="createOrModify(true)">Save And Continue</a>
 		</div>
@@ -17,7 +18,7 @@
 			<ul class="tabs clearfix">
 				<li [ngClass]="{'active': tab === 'general'}" (click)="changeTab('general')">General</li>
 				<li [ngClass]="{'active': tab === 'subjects'}" (click)="changeTab('subjects')">Subjects</li>
-				<!-- <li (click)="changeTab('addresses')">Addresses</li> -->
+				<li [ngClass]="{'active': tab === 'addresses'}" (click)="changeTab('addresses')">Addresses</li>
 			</ul>
 
 			
@@ -114,7 +115,8 @@
 							Faculty
 						</label>
 						<select [(ngModel)]="studentItem.faculty" [ngModelOptions]="{standalone: true}">
-							<option value="it">Công Nghệ Thông Tin</option>
+							<option value="it">Information Teachnology</option>
+							<option value="ms">Mathematics and Statistics</option>
 						</select>
 					</div>
 				</div>
@@ -125,8 +127,7 @@
 							Marjor
 						</label>
 						<select [(ngModel)]="studentItem.marjor" [ngModelOptions]="{standalone: true}">
-							<option value="knpm">Kỹ Nghệ Phần Mềm</option>
-							<option value="khmt">Khoa Học Máy Tính</option>
+							<option value="knpm">Software Engineer</option>
 						</select>
 					</div>
 				</div>
@@ -134,6 +135,7 @@
 				<div class="input">
 					<label for="status">
 						Status
+						<span class="required">*</span>
 					</label>
 					<select [(ngModel)]="studentItem.status" [ngModelOptions]="{standalone: true}">
 						<option value="studying">Studying</option>
@@ -143,7 +145,17 @@
 			</div>
 
 			<div class="tab-content" [ngClass]="{'show': tab === 'subjects'}">
-				<p>Subjects</p>
+				<!-- Move to Directive ListCheckbox -->
+				<ul class="list-checkbox">
+					<li *ngFor="let subject of subjects">
+						<input type="checkbox" [name]="subject._id" [(ngModel)]="subject.checked" value="subject._id">
+						<span>{{subject.name}}</span>
+					</li>
+				</ul>
+			</div>
+
+			<div class="tab-content" [ngClass]="{'show': tab === 'addresses'}">
+				
 			</div>
 
 		</form>
