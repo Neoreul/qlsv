@@ -85,7 +85,7 @@ class SubjectRouter extends RootRouter {
 
 				let updateStudents = await Student.update({
 					_id: {
-						$in: req.body.students
+						$in: req.body.removed_students
 					}
 				}, {
 					$pull: { subjects: { $in: Number(req.body._id) } }

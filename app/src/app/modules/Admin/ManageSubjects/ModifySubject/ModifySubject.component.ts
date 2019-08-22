@@ -19,7 +19,11 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	isDone   : boolean = false;
 	tab      : string='general';
 	students : Object[] = [];
-	removedStudents: Object[] = [];
+	// removedStudents: Object[] = [];
+	// addedStudents  : Object[] = [];
+
+	studentKeyword: string;
+	searchStudentNotify: string="";
 
 	constructor(
 		private subjectService: SubjectService,
@@ -57,7 +61,7 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	getSubject() {
 		this.subjectService.get(Number(this.subjectId))
 			.then(resData => {
-				console.log("subject: ", resData);
+				// console.log("subject: ", resData);
 				if(resData) {
 					this.subjectItem = resData;
 
@@ -73,7 +77,7 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 		this.studentService.getAll({ subject_id: this.subjectItem["_id"] })
 			.then(resData => {
 				this.students = resData.students;
-				console.log(this.students);
+				// console.log(this.students);
 			})
 			.catch(err => {
 				console.log(err);
@@ -81,7 +85,7 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	}
 
 	removeStudent(id: number){
-		this.removedStudents.push(id);
+		// this.removedStudents.push(id);
 		this.students = this.students.filter((s) => {
 			return s["_id"] != id;
 		});
@@ -92,8 +96,9 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 		this.isError= false;
 		this.isDone = false;
 
-		this.subjectItem["students"] = this.removedStudents;
-		console.log(this.subjectItem);
+		// this.subjectItem["removed_students"] = this.removedStudents;
+		// this.subjectItem["added_students"]   = this.addedStudents;
+		// console.log(this.subjectItem);
 
 		this.subjectService.createOrModify(this.subjectItem)
 			.then(resData => {
@@ -130,5 +135,33 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
             		console.log(err);
             	});
         }
+	}
+
+	searchStudents() {
+		if(!this.studentKeyword) return;
+
+		this.searchStudentNotify = "";
+
+		this.studentService.getAll({ keyword: this.studentKeyword })
+			.then(resData => {
+				console.log(resData);
+				if(resData.count && resData.count === 1) {
+					if(!this.students.find(s => s["student_number"] == resData.students[0]["student_number"])) {
+						this.studentService.addSubject({ student_id: resData.students[0]["_id"] , subject_id: this.subjectId })
+							.then(resData => {
+								// fail
+								this.students.push(resData.students[0]);
+							})
+						// this.addedStudents.push(resData.students[0]["_id"]);
+					} else {
+						this.searchStudentNotify = "This student has added before!";
+					}
+				} else {
+					this.searchStudentNotify = "Not found this student!";
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
 }

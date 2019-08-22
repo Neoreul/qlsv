@@ -1,0 +1,12 @@
+.list-checkbox.students {
+	height: 400px;
+	padding: 10px 0;
+	overflow-y: scroll;
+}
+.list-checkbox.students li {
+	padding: 10px 5px;
+    border-bottom: 1px solid #e1e1e1;
+}
+.list-checkbox.students li:hover {
+	background-color: #e1e1e1;
+}

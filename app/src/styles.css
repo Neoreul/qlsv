@@ -98,17 +98,22 @@ form .notify.success {color: var(--main-color); font-style: normal;}
 form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visible;}
 
 .list-checkbox {}
+.list-checkbox li {
+	padding: 10px 0;
+}
 .list-checkbox .container {
 	display: block;
 	position: relative;
 	padding-left: 30px;
-	margin-bottom: 20px;
 	cursor: pointer;
 	font-size: 14px;
 	-webkit-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
+}
+.list-checkbox .container span {
+	margin-right: 35px;
 }
 .list-checkbox .container input[type="checkbox"] {
 	position: absolute;
@@ -163,7 +168,7 @@ form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visi
 .toolbar .pagination {float: right;}
 .toolbar .pagination span {margin-left: 10px; margin-right: 5px;}
 
-@media only screen and (max-width: 1065px) {
+@media only screen and (max-width: 1125px) {
 	.toolbar .filter, 
 	.toolbar .pagination {float: none; display: block;}
 	.toolbar .pagination {margin-top: 10px;}
@@ -201,13 +206,16 @@ div.body-content {margin-top: 25px;}
 
 #main-admin div.head-content h1.title {font-size: 22px;}
 #main-admin div.head-content {position: relative;}
-#main-admin div.head-content div.action {position: absolute; top: 20px; right: 0;}
+#main-admin div.head-content div.action {position: fixed; top: 85px; right: 12px; z-index: 2;}
 #main-admin div.head-content div.action a.button {
 	padding: 7px 15px;
     font-size: 13px;
     text-transform: capitalize;
     background-color: #1d3642;
+    opacity: 0.65;
+    transition: opacity 0.3s;
 }
+#main-admin div.head-content div.action a.button:hover {opacity: 1;}
 #main-admin div.body-content {margin-top: 15px;}
 
 #main-admin div.input {display: block; width: 100%; margin: 5px 0; padding: 0px;}
@@ -241,4 +249,13 @@ div.body-content {margin-top: 25px;}
 
 @media only screen and (max-width: 760px) {
 	#main-admin {margin-left: 0 !important;}
+}
+
+@media only screen and (max-width: 520px) {
+	#main-admin div.head-content div.action {
+		position: relative;
+		top: 0;
+		right: 0;
+		margin-bottom: 20px;
+	}
 }

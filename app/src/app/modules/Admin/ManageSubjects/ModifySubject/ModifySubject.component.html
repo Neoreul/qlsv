@@ -94,11 +94,23 @@
 			</div>
 
 			<div class="tab-content" [ngClass]="{'show': tab === 'students'}">
-				<ul class="list-checkbox">
+				<p *ngIf="searchStudentNotify" style="font-size: 13px; color: #222;">{{searchStudentNotify}}</p>
+				<div class="search clearfix" style="margin-bottom: 25px;">
+					<input type="text" name="search-input" id="search-input" [(ngModel)]="studentKeyword" placeholder="Enter Student number" (keydown.enter)="searchStudents()">
+					<button (click)="searchStudents()" style="padding: 9px 15px; font-size: 13px; text-transform: capitalize; background-color: #6d7d85;">Add Student</button>
+				</div>
+
+				<p style="margin-bottom: 3px;">
+					<strong style="font-weight: 500;">List students</strong>
+				</p>
+				<ul class="list-checkbox students">
 					<li *ngFor="let student of students">
 						<label class="container">
-							<span class="student-number">{{student.student_number}}</span>
-							<span class="student-name">{{student.first_name}} {{student.last_name}}</span>
+							<a [routerLink]="['/admin/students', 'edit', student._id]" style="color: var(--text);" [title]="student.student_number">
+								<span class="student-number">{{student.student_number}}</span>
+								<span class="student-name">{{student.first_name}} {{student.last_name}}</span>
+							</a>
+							<!-- <a [routerLink]="['/admin/students', 'edit', student._id]">View</a> -->
 							<input type="checkbox" [name]="student._id" checked="true" (change)="removeStudent(student._id)" value="student._id">
 							<span class="checkmark"></span>
 						</label>

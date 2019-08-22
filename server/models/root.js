@@ -132,9 +132,9 @@ class RootModel {
 		}
 	}
 
-	async count() {
+	async count(query={}) {
 		try {
-			return await this.Model.countDocuments();
+			return await this.Model.countDocuments(query);
 		} catch(err) {
 			return null;
 		}
