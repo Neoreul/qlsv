@@ -24,12 +24,13 @@ class StudentRouter extends RootRouter {
 	async handleGetStudents(req, res) {
 		try {
 
-			let skip, limit, keyword, class_id, status, query = {};
+			let skip, limit, keyword, class_id, subject_id, query = {};
 
-			skip     = Number(req.body.skip)  || 0;
-			limit    = Number(req.body.limit) || 0;
-			class_id = Number(req.body.class_id);
-			status   = Number(req.body.status);
+			skip       = Number(req.body.skip)       || 0;
+			limit      = Number(req.body.limit)      || 0;
+			class_id   = Number(req.body.class_id)   || "";
+			subject_id = Number(req.body.subject_id) || "";
+			keyword    = req.body.keyword;
 
 			if(keyword && keyword != "") {
 				query = {
@@ -42,12 +43,12 @@ class StudentRouter extends RootRouter {
 				};
 			}
 
-			if(class_id) {
+			if(class_id != "") {
 				query.class_id = class_id;
 			}
 
-			if(status) {
-				query.status = status;
+			if(subject_id != "") {
+				query.subjects = subject_id;
 			}
 
 			let docs  = await Student.find(query, {
@@ -58,11 +59,13 @@ class StudentRouter extends RootRouter {
 				status         : 1,
 				date_modified  : 1
 			}, {skip, limit});
-			let counts=await Student.count();
+			let count =await Student.count(query);
 
 			res.send({
 				students: docs,
-				counts
+				count,
+				limit   : limit,
+				skip    : skip
 			});
 
 		} catch(err) {

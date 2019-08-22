@@ -15,76 +15,88 @@
 			<div class="notify" [ngClass]="{ 'active': isError }">{{notify}}</div>
 			<div class="notify success" [ngClass]="{'active': isDone}">Saved!</div>
 
-			<div class="input">
-				<label for="subject_number">
-					Subject Number
-					<span class="required">*</span>
-				</label>
-				<input type="text" id="subject_number" name="subject_number" [(ngModel)]="subjectItem.subject_number">
-			</div>
+			<ul class="tabs clearfix">
+				<li [ngClass]="{'active': tab === 'general'}" (click)="changeTab('general')">General</li>
+				<li [ngClass]="{'active': tab === 'students'}" (click)="changeTab('students')">Manage Students</li>
+			</ul>
 
-			<div class="input">
-				<label for="name">
-					Name
-					<span class="required">*</span>
-				</label>
-				<input type="text" id="name" name="name" [(ngModel)]="subjectItem.name">
-			</div>
-
-			<div class="col2">
+			<div class="tab-content" [ngClass]="{'show': tab === 'general'}">
 				<div class="input">
-					<label for="started_year">
-						Started Year
+					<label for="subject_number">
+						Subject Number
 						<span class="required">*</span>
 					</label>
-					<select [(ngModel)]="subjectItem.started_year" [ngModelOptions]="{standalone: true}">
-						<option value="2014">2014</option>
-						<option value="2015">2015</option>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
-						<option value="2018">2018</option>
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-						<option value="2022">2022</option>
-					</select>
+					<input type="text" id="subject_number" name="subject_number" [(ngModel)]="subjectItem.subject_number">
 				</div>
+
 				<div class="input">
-					<label for="ended_year">
-						Ended Year
+					<label for="name">
+						Name
 						<span class="required">*</span>
 					</label>
-					<select [(ngModel)]="subjectItem.ended_year" [ngModelOptions]="{standalone: true}">
-						<option value="2014">2014</option>
-						<option value="2015">2015</option>
-						<option value="2016">2016</option>
-						<option value="2017">2017</option>
-						<option value="2018">2018</option>
-						<option value="2019">2019</option>
-						<option value="2020">2020</option>
-						<option value="2021">2021</option>
-						<option value="2022">2022</option>
+					<input type="text" id="name" name="name" [(ngModel)]="subjectItem.name">
+				</div>
+
+				<div class="col2">
+					<div class="input">
+						<label for="started_year">
+							Started Year
+							<span class="required">*</span>
+						</label>
+						<select [(ngModel)]="subjectItem.started_year" [ngModelOptions]="{standalone: true}">
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+						</select>
+					</div>
+					<div class="input">
+						<label for="ended_year">
+							Ended Year
+							<span class="required">*</span>
+						</label>
+						<select [(ngModel)]="subjectItem.ended_year" [ngModelOptions]="{standalone: true}">
+							<option value="2014">2014</option>
+							<option value="2015">2015</option>
+							<option value="2016">2016</option>
+							<option value="2017">2017</option>
+							<option value="2018">2018</option>
+							<option value="2019">2019</option>
+							<option value="2020">2020</option>
+							<option value="2021">2021</option>
+							<option value="2022">2022</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="input">
+					<label for="description">
+						Description
+					</label>
+					<textarea rows="5" id="description" name="description" [(ngModel)]="subjectItem.description"></textarea>
+				</div>
+
+				<div class="input">
+					<label for="status">
+						Status
+						<span class="required">*</span>
+					</label>
+					<select [(ngModel)]="subjectItem.status" [ngModelOptions]="{standalone: true}">
+						<option value="enabled">Enabled</option>
+						<option value="disabled">Disabled</option>
 					</select>
 				</div>
 			</div>
 
-			<div class="input">
-				<label for="description">
-					Description
-				</label>
-				<textarea rows="5" id="description" name="description" [(ngModel)]="subjectItem.description"></textarea>
+			<div class="tab-content" [ngClass]="{'show': tab === 'students'}">
+				
 			</div>
 
-			<div class="input">
-				<label for="status">
-					Status
-					<span class="required">*</span>
-				</label>
-				<select [(ngModel)]="subjectItem.status" [ngModelOptions]="{standalone: true}">
-					<option value="enabled">Enabled</option>
-					<option value="disabled">Disabled</option>
-				</select>
-			</div>
 		</form>
 	</div>
 </div>

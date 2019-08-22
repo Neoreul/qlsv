@@ -21,7 +21,6 @@
 				<li [ngClass]="{'active': tab === 'addresses'}" (click)="changeTab('addresses')">Addresses</li>
 			</ul>
 
-			
 			<div class="tab-content" [ngClass]="{'show': tab === 'general'}">
 				<div class="input">
 					<label for="student_number">
@@ -148,8 +147,10 @@
 				<!-- Move to Directive ListCheckbox -->
 				<ul class="list-checkbox">
 					<li *ngFor="let subject of subjects">
-						<input type="checkbox" [name]="subject._id" [(ngModel)]="subject.checked" value="subject._id">
-						<span>{{subject.name}}</span>
+						<label class="container">{{subject.name}}
+							<input type="checkbox" [name]="subject._id" [(ngModel)]="subject.checked" value="subject._id">
+							<span class="checkmark"></span>
+						</label>
 					</li>
 				</ul>
 			</div>

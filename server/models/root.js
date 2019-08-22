@@ -134,7 +134,7 @@ class RootModel {
 
 	async count() {
 		try {
-			return await this.Model.count();
+			return await this.Model.countDocuments();
 		} catch(err) {
 			return null;
 		}

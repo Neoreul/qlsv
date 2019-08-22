@@ -10,9 +10,9 @@ export class StudentService {
 	constructor(
 		private resfulAPI: RestfulAPI) {}
 
-	getAll(): Promise<any>{
+	getAll(data: any): Promise<any>{
 		let url = StudentAPI.GET_STUDENTS;
-		return this.resfulAPI.post(url);
+		return this.resfulAPI.post(url, data);
 	}
 
 	get(id: number): Promise<any>{

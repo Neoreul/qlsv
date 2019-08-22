@@ -16,6 +16,7 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	isError  : boolean = false;
 	notify   : string;
 	isDone   : boolean = false;
+	tab      : string='general';
 
 	constructor(
 		private subjectService: SubjectService,
@@ -30,6 +31,10 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 
 	ngOnChanges() {
 		this.checkMode();
+	}
+
+	changeTab(tab:string='general') {
+		this.tab = tab;
 	}
 
 	checkMode() {
