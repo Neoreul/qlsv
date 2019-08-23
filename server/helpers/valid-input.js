@@ -1,6 +1,6 @@
 let validator = require('validator');
 
-exports.name= (name, cb)=>{
+exports.name= (name)=>{
     return validator.matches(name, /^.{1,15}/);
 };
 

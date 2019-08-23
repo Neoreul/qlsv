@@ -10,13 +10,14 @@ exports.connect = (done) => {
 
 	let url = config.connection_string;
 
-	state.connection = mongoose.createConnection(url, {
+	mongoose.createConnection(url, {
 		useNewUrlParser: true,
 		useCreateIndex: true
 	}, (err) => {
 		if(err) {
 			done(err);
 		} else {
+			state.connection = res;
 			done();
 		}
 	});

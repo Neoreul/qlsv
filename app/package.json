@@ -1,7 +1,7 @@
 {
   "name": "app-qlsv",
   "version": "1.0.0",
-  "description": "Quan ly sinh vien",
+  "description": "Students Management using Angular4",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
