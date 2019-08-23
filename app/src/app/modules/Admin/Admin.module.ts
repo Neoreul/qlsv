@@ -14,6 +14,7 @@ import { ManageSubjectsComponent } from './ManageSubjects/ManageSubjects/ManageS
 import { ModifySubjectComponent }  from './ManageSubjects/ModifySubject/ModifySubject.component';
 
 import { DateFormatDirective }     from '../Utils/DateFormat/DateFormat.directive';
+import { SortByPipe }  from '../Utils/SortByTable/SortBy.pipe'; 
 
 import { AdminRoutingModule }      from './AdminRouting.module';
 
@@ -31,6 +32,7 @@ import { SubjectService }          from './ManageSubjects/ManageSubjects.service
 	],
 	declarations: [
 		DateFormatDirective,
+		SortByPipe,
 		AdminComponent,
 		AdminDashboardComponent,
 		ManageClassesComponent,

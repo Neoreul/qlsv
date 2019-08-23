@@ -12,10 +12,18 @@ export class ManageClassesComponent implements OnInit {
 
 	classes: Object[] = [];
 
+	reverse   : boolean= false;
+	nameOrderBy: string= 'class_number';
+
 	constructor(private classService: ClassService) {}
 
 	ngOnInit() {
 		this.getClasses();
+	}
+
+	orderBy(nameOrderBy: string) {
+		this.reverse = (this.nameOrderBy == nameOrderBy) ? !this.reverse : false;
+		this.nameOrderBy = nameOrderBy;
 	}
 
 	getClasses() {

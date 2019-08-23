@@ -12,10 +12,18 @@ export class ManageTeacherComponent implements OnInit {
 
 	teachers: Object[] = [];
 
+	reverse   : boolean= false;
+	nameOrderBy: string= '_id';
+
 	constructor(private teacherService: TeacherService) {}
 
 	ngOnInit() {
 		this.getTeachers();
+	}
+
+	orderBy(nameOrderBy: string) {
+		this.reverse = (this.nameOrderBy == nameOrderBy) ? !this.reverse : false;
+		this.nameOrderBy = nameOrderBy;
 	}
 
 	getTeachers() {

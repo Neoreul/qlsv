@@ -57,9 +57,10 @@ select {
 
 table {width: 100%; border-collapse: collapse; text-align: left;}
 table th {font-weight: 500; border-bottom: 1px solid #333; padding: 7px 5px; cursor: pointer;}
+table th i {margin-left: 5px;}
 table td {border-bottom: 1px solid #ccc; padding: 9px 5px; max-width: 200px;}
 table td input {padding: 2px 5px;}
-table td select {padding: 5px;}
+table td select {padding: 5px 20px 5px 10px;}
 table td span.status {color: var(--main-color); text-transform: capitalize;}
 table td div.description {
 	line-height: 1.4;
@@ -168,7 +169,7 @@ form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visi
 .toolbar .pagination {float: right;}
 .toolbar .pagination span {margin-left: 10px; margin-right: 5px;}
 
-@media only screen and (max-width: 1125px) {
+@media only screen and (max-width: 1178px) {
 	.toolbar .filter, 
 	.toolbar .pagination {float: none; display: block;}
 	.toolbar .pagination {margin-top: 10px;}

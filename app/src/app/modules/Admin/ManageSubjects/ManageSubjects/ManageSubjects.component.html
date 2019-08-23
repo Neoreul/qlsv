@@ -9,15 +9,15 @@
 
 		<table>
 			<tr>
-				<th>ID. </th>
-				<th>Name</th>
+				<th (click)="orderBy('subject_number')">ID. <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('name')">Name <i class="fa fa-sort" aria-hidden="true"></i></th>
 				<th>Description</th>
-				<th>Status</th>
-				<th>Str-End Years</th>
-				<th>Last Modified</th>
+				<th (click)="orderBy('status')">Status <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('started_year')">Str-End Years <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('date_modified')">Last Modified <i class="fa fa-sort" aria-hidden="true"></i></th>
 				<th>Action</th>
 			</tr>
-			<tr *ngFor="let item of subjects">
+			<tr *ngFor="let item of subjects | SortBy: nameOrderBy:reverse">
 				<td>{{item.subject_number}}</td>
 				<td>{{item.name}}</td>
 				<td>

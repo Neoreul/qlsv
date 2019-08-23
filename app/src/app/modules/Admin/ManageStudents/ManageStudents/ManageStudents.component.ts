@@ -25,6 +25,9 @@ export class ManageStudentsComponent implements OnInit {
 	subjectId : string = 'all';
 	keyword   : string;
 
+	reverse   : boolean= false;
+	nameOrderBy: string= 'student_number';
+
 	constructor(
 		private studentService: StudentService,
 		private classService  : ClassService,
@@ -37,6 +40,11 @@ export class ManageStudentsComponent implements OnInit {
 
 		// First load
 		this.getStudents();
+	}
+
+	orderBy(nameOrderBy: string) {
+		this.reverse = (this.nameOrderBy == nameOrderBy) ? !this.reverse : false;
+		this.nameOrderBy = nameOrderBy;
 	}
 
 	getClasses() {
@@ -88,6 +96,18 @@ export class ManageStudentsComponent implements OnInit {
 			.catch(err => {
 				console.log(err);
 			})
+	}
+
+	changeStatus(item: Object) {
+		console.log("#Client.changeStatus: ", item);
+
+		this.studentService.changeStatus(item["_id"], item["status"])
+			.then(resData => {
+				// console.log("Change status successfully!");
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
 
 	renderPagers() {

@@ -7,5 +7,6 @@ export const StudentAPI = {
 	GET_ADDRESSES       : "/api/students/addresses",
 	ADD_ADDRESS         : "/api/students/add-address",
 	UPDATE_ADDRESS      : "/api/students/update-address",
-	REMOVE_ADDRESS      : "/api/students/remove-address"
+	REMOVE_ADDRESS      : "/api/students/remove-address",
+	CHANGE_STATUS       : "/api/students/change-status"
 };

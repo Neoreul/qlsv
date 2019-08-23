@@ -17,6 +17,7 @@ class StudentRouter extends RootRouter {
 		this.router.post("/api/students/update-address", validInputUser.validateStudentAddress, this.handleStudentUpdateAddress.bind(this));
 		this.router.post("/api/students/remove-address", this.handleStudentRemoveAddress.bind(this));
 		this.router.post("/api/students/remove", this.handleRemoveStudent.bind(this));
+		this.router.post("/api/students/change-status", this.handleChangeStatus.bind(this));
 
 		return this.router;
 	}
@@ -335,6 +336,30 @@ class StudentRouter extends RootRouter {
 				res.send({
 					err: 1,
 					msg: "Can not remove this student"
+				});
+				return;
+			}
+
+			res.send({ ok: 1 });
+
+		} catch(err) {
+			res.status(400).send(err);
+		}
+	}
+
+	async handleChangeStatus(req, res) {
+		try {
+
+			let student_id = Number(req.body.id);
+
+			let updateRecord = await Student.updateOne({ _id: student_id }, {
+				$set: { status: req.body.status }
+			});
+
+			if(!updateRecord) {
+				res.send({
+					err: 1,
+					msg: "Can not change status of this student"
 				});
 				return;
 			}

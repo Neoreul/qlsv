@@ -39,27 +39,32 @@
 				<select (change)="viewPage($event.target.value)">
 					<option *ngFor="let pager of pagers" [value]="pager">{{pager}}</option>
 				</select>
+				<span>{{students.length}} / {{count}} students</span>
 			</div>
 
 		</div>
 
 		<table>
 			<tr>
-				<th>ID. </th>
-				<th>First Name</th>
-				<th>Last Name</th>
-				<th>Email</th>
-				<th>Status</th>
-				<th>Last Modified</th>
+				<th (click)="orderBy('student_number')">ID. <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('first_name')">First Name <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('last_name')">Last Name <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('email')">Email <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('status')">Status <i class="fa fa-sort" aria-hidden="true"></i></th>
+				<th (click)="orderBy('date_modified')">Last Modified <i class="fa fa-sort" aria-hidden="true"></i></th>
 				<th>Action</th>
 			</tr>
-			<tr *ngFor="let item of students">
+			<tr *ngFor="let item of students | SortBy: nameOrderBy:reverse">
 				<td>{{item.student_number}}</td>
 				<td>{{item.first_name}}</td>
 				<td>{{item.last_name}}</td>
 				<td>{{item.email}}</td>
 				<td>
-					<span class="status">{{item.status}}</span>
+					<!-- <span class="status">{{item.status}}</span> -->
+					<select [(ngModel)]="item.status" [ngModelOptions]="{standalone: true}" (change)="changeStatus(item)">
+						<option value="studying">Studying</option>
+						<option value="leaved">Leaved</option>
+					</select>
 				</td>
 				<td dateFormat>{{item.date_modified}}</td>
 				<td>

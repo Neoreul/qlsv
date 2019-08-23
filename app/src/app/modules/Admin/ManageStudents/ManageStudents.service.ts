@@ -55,4 +55,9 @@ export class StudentService {
 		let url = StudentAPI.REMOVE_ADDRESS;
 		return this.resfulAPI.post(url, { id, address });
 	}
+
+	changeStatus(id: number, status: string): Promise<any>{
+		let url = StudentAPI.CHANGE_STATUS;
+		return this.resfulAPI.post(url, { id, status });
+	}
 }

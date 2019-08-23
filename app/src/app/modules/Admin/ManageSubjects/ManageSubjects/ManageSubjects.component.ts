@@ -12,10 +12,18 @@ export class ManageSubjectsComponent implements OnInit {
 
 	subjects: Object[] = [];
 
+	reverse   : boolean= false;
+	nameOrderBy: string= 'subject_number';
+
 	constructor(private subjectService: SubjectService) {}
 
 	ngOnInit() {
 		this.getClasses();
+	}
+
+	orderBy(nameOrderBy: string) {
+		this.reverse = (this.nameOrderBy == nameOrderBy) ? !this.reverse : false;
+		this.nameOrderBy = nameOrderBy;
 	}
 
 	getClasses() {
