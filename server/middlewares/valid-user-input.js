@@ -116,6 +116,7 @@ exports.loginUser = (req, res, next) => {
 				};
 
 				req.ipUser = ipUser;
+
 				next();
 			}
 		});

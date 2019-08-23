@@ -19,8 +19,8 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	isDone   : boolean = false;
 	tab      : string='general';
 	students : Object[] = [];
-	// removedStudents: Object[] = [];
-	// addedStudents  : Object[] = [];
+	removedStudents: Object[] = [];
+	addedStudents  : Object[] = [];
 
 	studentKeyword: string;
 	searchStudentNotify: string="";
@@ -85,10 +85,36 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 	}
 
 	removeStudent(id: number){
-		// this.removedStudents.push(id);
+		this.removedStudents.push(id);
 		this.students = this.students.filter((s) => {
 			return s["_id"] != id;
 		});
+	}
+
+	searchStudents() {
+		if(!this.studentKeyword) return;
+
+		this.searchStudentNotify = "";
+
+		this.studentService.getAll({ keyword: this.studentKeyword })
+			.then(resData => {
+				// console.log(resData);
+				if(resData.count && resData.count === 1) {
+					let isExistStudent = this.students.find(s => s["student_number"] == resData.students[0]["student_number"]);
+					if(!isExistStudent) {
+
+						this.addedStudents.push(resData.students[0]["_id"]);
+						this.students.push(resData.students[0]);
+					} else {
+						this.searchStudentNotify = "This student has added before!";
+					}
+				} else {
+					this.searchStudentNotify = "Not found this student!";
+				}
+			})
+			.catch(err => {
+				console.log(err);
+			});
 	}
 
 	createOrModify(isContinue: boolean=false) {
@@ -96,8 +122,10 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 		this.isError= false;
 		this.isDone = false;
 
-		// this.subjectItem["removed_students"] = this.removedStudents;
-		// this.subjectItem["added_students"]   = this.addedStudents;
+		this.removeTheSameStudentsBeforeUpdate();
+
+		this.subjectItem["removed_students"] = this.removedStudents;
+		this.subjectItem["added_students"]   = this.addedStudents;
 		// console.log(this.subjectItem);
 
 		this.subjectService.createOrModify(this.subjectItem)
@@ -123,6 +151,14 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
 			});
 	}
 
+	removeTheSameStudentsBeforeUpdate() {
+		let dupplicateStudents = this.removedStudents.filter((v) => { return this.addedStudents.indexOf(v) > -1; });
+		// console.log("dupplicateStudents: ", dupplicateStudents);
+
+		this.addedStudents     = this.addedStudents.filter((v) => { return dupplicateStudents.indexOf(v) == -1; });
+		this.removedStudents   = this.removedStudents.filter((v) => { return dupplicateStudents.indexOf(v) == -1; });
+	}
+
 	delete() {
 		let isConfirm = confirm("Are you sure delete this subject?");
         if(isConfirm){
@@ -135,33 +171,5 @@ export class ModifySubjectComponent implements OnInit, OnChanges {
             		console.log(err);
             	});
         }
-	}
-
-	searchStudents() {
-		if(!this.studentKeyword) return;
-
-		this.searchStudentNotify = "";
-
-		this.studentService.getAll({ keyword: this.studentKeyword })
-			.then(resData => {
-				console.log(resData);
-				if(resData.count && resData.count === 1) {
-					if(!this.students.find(s => s["student_number"] == resData.students[0]["student_number"])) {
-						this.studentService.addSubject({ student_id: resData.students[0]["_id"] , subject_id: this.subjectId })
-							.then(resData => {
-								// fail
-								this.students.push(resData.students[0]);
-							})
-						// this.addedStudents.push(resData.students[0]["_id"]);
-					} else {
-						this.searchStudentNotify = "This student has added before!";
-					}
-				} else {
-					this.searchStudentNotify = "Not found this student!";
-				}
-			})
-			.catch(err => {
-				console.log(err);
-			});
 	}
 }

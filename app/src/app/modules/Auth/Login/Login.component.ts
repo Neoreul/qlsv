@@ -58,7 +58,7 @@ export class LoginComponent {
 
 				if(this.authService.isLoggedIn) {
 
-					let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : 'admin/dashboard';
+					// let redirect = this.authService.redirectUrl ? this.router.parseUrl(this.authService.redirectUrl) : 'admin/dashboard';
 
 					// let navigationExtras: NavigationExtras = {
 					// 	queryParamsHandling: 'preserve',
@@ -66,7 +66,7 @@ export class LoginComponent {
 					// };
 
 					setTimeout(() => {
-						this.router.navigate([redirect]);
+						this.router.navigate(["admin/dashboard"]);
 					}, 1500);
 				}
 

@@ -96,8 +96,8 @@
 			<div class="tab-content" [ngClass]="{'show': tab === 'students'}">
 				<p *ngIf="searchStudentNotify" style="font-size: 13px; color: #222;">{{searchStudentNotify}}</p>
 				<div class="search clearfix" style="margin-bottom: 25px;">
-					<input type="text" name="search-input" id="search-input" [(ngModel)]="studentKeyword" placeholder="Enter Student number" (keydown.enter)="searchStudents()">
-					<button (click)="searchStudents()" style="padding: 9px 15px; font-size: 13px; text-transform: capitalize; background-color: #6d7d85;">Add Student</button>
+					<input type="text" name="search-input" id="search-input" [(ngModel)]="studentKeyword" placeholder="Enter Student number">
+					<button (click)="searchStudents()" style="padding: 8px 15px; font-size: 14px; text-transform: capitalize; background-color: #6d7d85;">Add Student</button>
 				</div>
 
 				<p style="margin-bottom: 3px;">

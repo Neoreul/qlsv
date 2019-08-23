@@ -83,7 +83,7 @@ class SubjectRouter extends RootRouter {
 					return;
 				}
 
-				let updateStudents = await Student.update({
+				let removedStudents = await Student.update({
 					_id: {
 						$in: req.body.removed_students
 					}
@@ -93,13 +93,23 @@ class SubjectRouter extends RootRouter {
 					multi: true
 				});
 
-				let updateRecord = await Subject.updateOne({
+				let addedStudents   = await Student.update({
+					_id: {
+						$in: req.body.added_students
+					}
+				}, {
+					$push: { subjects: Number(req.body._id) }
+				}, {
+					multi: true
+				});
+
+				let updateRecord    = await Subject.updateOne({
 					_id: Number(req.body._id)
 				}, {
 					$set: req.ipSubject
 				});
 
-				if(!updateRecord || !updateStudents) {
+				if(!updateRecord || !removedStudents || !addedStudents) {
 					res.send({
 						err: 1,
 						msg: "Can not update this subject"

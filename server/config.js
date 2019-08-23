@@ -8,5 +8,5 @@ module.exports = {
 
 	app_port         : app_port,
 	domain           : domain,
-	sharing_host     : ["http://localhost:" + app_port]
+	sharing_host     : ["http://localhost:" + app_port, "*"]
 };
