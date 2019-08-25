@@ -49,6 +49,8 @@ select {
 	background-color: white;
 	color: var(--text);
 
+	border: 1px solid var(--border);
+
 	/* Positions background arrow image */
 	background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
 	background-repeat: no-repeat;
@@ -164,7 +166,8 @@ form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visi
 
 .toolbar .search {}
 .toolbar .search > * {float: left;}
-.toolbar .search button {position: relative; left: -1px; padding: 8px 25px; text-transform: capitalize; font-size: 14px;}
+.toolbar .search > input {padding-top: 8px; padding-bottom: 8px; border: 1px solid var(--border);}
+.toolbar .search button {position: relative; left: -1px; padding: 9px 25px; text-transform: capitalize; font-size: 14px;}
 
 .toolbar .pagination {float: right;}
 .toolbar .pagination span {margin-left: 10px; margin-right: 5px;}
