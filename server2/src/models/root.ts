@@ -16,14 +16,10 @@ class RootModel {
 	Model: any;
 
 	constructor() {
-		this.connection = mongoose.createConnection(config.connection_string, {
-			useNewUrlParser: true,
-			useCreateIndex : true
-		}).then(res => {
-			this.connection = res;
-		});
+		this.connection = db.get();
 
-		// this.connection = db.get();
+		// console.log("connection: ", this.connection);
+
 		this.counter = counter;
 		this.counter.initialize(this.connection);
 	}

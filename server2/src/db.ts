@@ -1,6 +1,8 @@
 import mongoose from 'mongoose';
 import { config } from './config';
 
+let state: any= {};
+
 export class DB {
 
 	state: any = {};
@@ -8,7 +10,7 @@ export class DB {
 	constructor() {}
 
 	connect(done: Function){
-		if(this.state.connection) return done();
+		if(state.connection) return done();
 
 		let url = config.connection_string;
 
@@ -16,12 +18,12 @@ export class DB {
 			useNewUrlParser: true,
 			useCreateIndex : true
 		}).then(res => {
-			this.state.connection = res;
+			state.connection = res;
 			done();
 		});
 	}
 
 	get(): any{
-		return this.state.connection;
+		return state.connection;
 	}
 }
