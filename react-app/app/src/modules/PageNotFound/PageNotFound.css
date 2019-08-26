@@ -1,0 +1,7 @@
+.page-not-found {
+	position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
