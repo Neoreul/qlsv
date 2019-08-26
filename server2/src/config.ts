@@ -1,4 +1,4 @@
-const domain    = "http://localhost:3300";
+const domain    = "http://localhost:3000";
 
 export const config = {
 	secret           : 'jfRj34%jd@1djf@R9fV#jv<rt4?47r/rdrgR-+84mbvFG',
@@ -8,6 +8,6 @@ export const config = {
 	domain           : domain,
 	sharing_hosts    : [
 		"http://localhost:3001",
-		"http://localhost:8080"
+		"http://localhost:3002"
 	]
 };

@@ -5,3 +5,8 @@ package-lock.json
 
 .idea
 build
+
+.env
+
+combined.log
+error.log
