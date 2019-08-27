@@ -29,7 +29,7 @@ export const login = (data) => {
 }
 
 export const signUp = (data) => {
-	let url = AppConfig.SERVER_URI + AuthAPI.REGISTER_USER;
+	let url = AuthAPI.REGISTER_USER;
 	return new Promise((resolve, reject) => {
 		POST(url, data)
 			.then(res => {
@@ -42,7 +42,7 @@ export const signUp = (data) => {
 }
 
 export const logout = () => {
-	let url = AppConfig.SERVER_URI + AuthAPI.LOGOUT_USER;
+	let url = AuthAPI.LOGOUT_USER;
 	return new Promise((resolve, reject) => {
 		POST(url)
 			.then(res => {

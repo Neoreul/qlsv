@@ -7,7 +7,10 @@ const user = (state = initialState, action) => {
 	switch(action.type) {
 		case 'SET_USER': 
 			let newState = {...state};
-			newState.payload = action.payload;
+			
+			newState.user       = action.payload.user;
+			newState.isLoggedIn = true;
+
 			return newState;
 
 		default: 

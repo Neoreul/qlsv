@@ -166,8 +166,8 @@ form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visi
 
 .toolbar .search {}
 .toolbar .search > * {float: left;}
-.toolbar .search > input {padding-top: 8px; padding-bottom: 8px; border: 1px solid var(--border);}
-.toolbar .search button {position: relative; left: -1px; padding: 9px 25px; text-transform: capitalize; font-size: 14px;}
+.toolbar .search > input {padding-top: 7px; padding-bottom: 7px; border: 1px solid var(--border);}
+.toolbar .search button {position: relative; left: -1px; padding: 8px 25px; text-transform: capitalize; font-size: 14px;}
 
 .toolbar .pagination {float: right;}
 .toolbar .pagination span {margin-left: 10px; margin-right: 5px;}
@@ -215,6 +215,7 @@ div.body-content {margin-top: 25px;}
   padding: 7px 15px;
     font-size: 13px;
     text-transform: capitalize;
+    margin-left: 5px;
     background-color: #1d3642;
     opacity: 0.65;
     transition: opacity 0.3s;

@@ -16,7 +16,7 @@ class UserMenu extends React.Component {
 			.then(resData => {
 				if(resData.ok && resData.ok === 1) {
 					// redirect to about here
-					this.props.submit();
+					this.props.logout();
 					this.props.history.push('/about');
 				}
 			})
