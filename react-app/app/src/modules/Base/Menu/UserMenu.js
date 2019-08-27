@@ -4,12 +4,20 @@ import { Link } from 'react-router-dom';
 import { logout } from '../../Auth/Auth.services';
 
 class UserMenu extends React.Component {
+
+	constructor(props) {
+		super(props);
+
+		this.logout = this.logout.bind(this);
+	}
 	
 	logout() {
 		logout()
 			.then(resData => {
 				if(resData.ok && resData.ok === 1) {
 					// redirect to about here
+					this.props.submit();
+					this.props.history.push('/about');
 				}
 			})
 			.catch(err => {

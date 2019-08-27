@@ -28,6 +28,19 @@ export const login = (data) => {
 	});
 }
 
+export const signUp = (data) => {
+	let url = AppConfig.SERVER_URI + AuthAPI.REGISTER_USER;
+	return new Promise((resolve, reject) => {
+		POST(url, data)
+			.then(res => {
+				resolve(res.data);
+			})
+			.catch(err => {
+				reject(err);
+			});
+	});
+}
+
 export const logout = () => {
 	let url = AppConfig.SERVER_URI + AuthAPI.LOGOUT_USER;
 	return new Promise((resolve, reject) => {

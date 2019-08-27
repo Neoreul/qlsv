@@ -16,7 +16,7 @@ class Menu extends React.Component {
 
 		this.state = {
 			isLoggedIn: false,
-			user: {}
+			user: null
 		};
 	}
 
@@ -34,12 +34,16 @@ class Menu extends React.Component {
 		}
 	}
 
+	logoutSubmit() {
+		this.setState({ isLoggedIn: false, user: null });
+	}
+
 	render() {
 		const isLoggedIn = this.state.isLoggedIn;
 		let menu;
 
 		if(isLoggedIn) {
-			menu = <UserMenu user={this.state.user}/>;
+			menu = <UserMenu user={this.state.user} logout={() => this.logoutSubmit()}/>;
 		} else {
 			menu = <GuestMenu/>;
 		}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-// import logo from './logo.svg';
-import './App.css';
+
+// import './App.css';
 
 import Layout   from './modules/Base/Layout/Layout';
 import MyHeader from './modules/Base/MyHeader/MyHeader';
@@ -9,6 +9,7 @@ import MyFooter from './modules/Base/MyFooter/MyFooter';
 
 import About    from './modules/About/About';
 import Login    from './modules/Auth/Login/Login';
+import SignUp   from './modules/Auth/SignUp/SignUp';
 import PageNotFound from './modules/PageNotFound/PageNotFound';
 
 import { checkLogin } from './modules/Auth/Auth.services';
@@ -37,6 +38,7 @@ function App() {
 							<Switch>
 								{/*<Route exact path="/" component={ About }/>*/}
 								<Route path="/login" component={ Login }/>
+								<Route path="/sign-up" component={ SignUp } />
 
 								<PrivateRoute exact path='/' component={ About } />
 

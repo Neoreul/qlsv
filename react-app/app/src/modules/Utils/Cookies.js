@@ -17,7 +17,7 @@ export const getCookie = (name) => {
 }
 
 export const deleteCookie = (cookieName) => {
-    this.set({ name:cookieName, value:'', expireDays:-1 });
+    setCookie({ name:cookieName, value:'', expireDays:-1 });
 }
 
 export const setCookie = (params) => {
