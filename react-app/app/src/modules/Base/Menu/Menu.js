@@ -1,49 +1,31 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { setUser } from '../../../actions/index';
 
 import './Menu.css';
 
 import UserMenu from './UserMenu';
 import GuestMenu from './GuestMenu';
 
-import { checkLogin } from '../../Auth/Auth.services';
+// import { checkLogin } from '../../Auth/Auth.services';
 
 import { AppConfig } from '../../../config/index';
 import { getCookie } from '../../Utils/Cookies';
 
 class Menu extends React.Component {
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			isLoggedIn: false,
-			user: null
-		};
-	}
-
-	componentDidMount() {
-		this.checkLogin();
-	}
-
-	checkLogin() {
-		let isLoggedIn = checkLogin();
-
-		this.setState({ isLoggedIn });
-
-		if(isLoggedIn) {
-			this.setState({ user: JSON.parse(getCookie(AppConfig.COOKIE_VALUE.USER)) });
-		}
-	}
-
 	logoutSubmit() {
-		this.setState({ isLoggedIn: false, user: null });
+		this.props.dispatch(setUser({ user: null, isLoggedIn: false }));
+		this.props.history.push('/login');
 	}
 
 	render() {
-		const isLoggedIn = this.state.isLoggedIn;
+		const { isLoggedIn, user } = this.props;
 		let menu;
 
 		if(isLoggedIn) {
-			menu = <UserMenu user={this.state.user} logout={() => this.logoutSubmit()}/>;
+			menu = <UserMenu user={user} logout={() => this.logoutSubmit()}/>;
 		} else {
 			menu = <GuestMenu/>;
 		}
@@ -56,4 +38,11 @@ class Menu extends React.Component {
 	}
 }
 
-export default Menu;
+const mapStateToProps = (state) => {
+	return {
+		user: state.user.user,
+		isLoggedIn: state.user.isLoggedIn
+	};
+};
+
+export default connect(mapStateToProps)(withRouter(Menu));

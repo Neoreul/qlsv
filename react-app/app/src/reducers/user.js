@@ -9,7 +9,7 @@ const user = (state = initialState, action) => {
 			let newState = {...state};
 			
 			newState.user       = action.payload.user;
-			newState.isLoggedIn = true;
+			newState.isLoggedIn = action.payload.isLoggedIn;
 
 			return newState;
 

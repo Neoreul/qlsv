@@ -70,10 +70,9 @@ class LoginForm extends React.Component {
 
 		login(this.state.user)
 			.then(resData => {
-				// console.log(resData);
 
 				if(resData.ok && resData.ok === 1) {
-					this.props.dispatch(setUser(resData));
+					this.props.dispatch(setUser({ user: resData.user, isLoggedIn: true }));
 					this.props.submit(true);
 				}
 
