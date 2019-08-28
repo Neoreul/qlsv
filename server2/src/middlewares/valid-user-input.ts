@@ -215,6 +215,10 @@ class ValidUserInput {
 						student.password = hash(student.password);
 					}
 
+					if(student.age) {
+						ipStudent.age = Number(student.age);
+					}
+
 					req.ipStudent = ipStudent;
 					next();
 				}
@@ -337,6 +341,7 @@ class ValidUserInput {
 						status         : teacher.status
 					};
 
+					if(teacher.age) { ipTeacher.age = Number(teacher.age); }
 					if(teacher.special_name) { ipTeacher.special_name = teacher.special_name; }
 					if(teacher.street_address1) { ipTeacher.street_address1 = teacher.street_address1; }
 					if(teacher.street_address2) { ipTeacher.street_address2 = teacher.street_address2; }

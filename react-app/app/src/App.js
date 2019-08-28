@@ -38,7 +38,7 @@ function App() {
 								<Route path="/login" component={ Login } />
 								<Route path="/sign-up" component={ SignUp } />
 
-								<PrivateRoute exact path='/' component={ About } />
+								<Route exact path='/' component={ About } />
 								<PrivateRoute path="/admin/dashboard" component={ DashBoard } />
 								<PrivateRoute exact path="/admin/classes" component={ ManageClasses } />
 								<PrivateRoute path="/admin/classes/create" component={ ModifyClass } />
