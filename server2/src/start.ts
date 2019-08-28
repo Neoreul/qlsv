@@ -24,7 +24,7 @@ const db         = new DB();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-app.use(cors({origin: config.sharing_host, credentials: true}));
+app.use(cors({origin: config.sharing_hosts, credentials: true}));
 
 app.use(loggerDev('dev'));
 app.use(express.json());

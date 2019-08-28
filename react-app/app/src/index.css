@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap');
+
+:root {
+  --main-color : #22977f;
+  --text       : #545353;
+  --border     : #c1c1c1;
+  --border-dark: #333333;
+  --danger     : #d91313;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text);
+  background-color: white;
+}
+
+ul, ol {margin: 0; padding: 0; list-style-type: none;}
+
+a {color: var(--main-color); text-decoration: none;}
+
+button, a.button {color: white; background-color: var(--main-color); text-transform: uppercase; border: none; outline: 0; padding: 10px 25px; cursor: pointer;}
+
+a.button:hover {cursor: pointer;}
+
+span.required {color: var(--danger);}
+
+input, textarea {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 14px;
+  padding: 6px 10px;
+  outline: none;
+  color: var(--text);
+}
+
+select {
+  font-family: 'Roboto', sans-serif; 
+  font-size: 14px;
+  padding: 7px 10px;
+  outline: none;
+  /* Removes the default <select> styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  background-color: white;
+  color: var(--text);
+
+  border: 1px solid var(--border);
+
+  /* Positions background arrow image */
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAh0lEQVQ4T93TMQrCUAzG8V9x8QziiYSuXdzFC7h4AcELOPQAdXYovZCHEATlgQV5GFTe1ozJlz/kS1IpjKqw3wQBVyy++JI0y1GTe7DCBbMAckeNIQKk/BanALBB+16LtnDELoMcsM/BESDlz2heDR3WePwKSLo5eoxz3z6NNcFD+vu3ij14Aqz/DxGbKB7CAAAAAElFTkSuQmCC');
+  background-repeat: no-repeat;
+  background-position: 97%;
+}
+
+table {width: 100%; border-collapse: collapse; text-align: left;}
+table th {font-weight: 500; border-bottom: 1px solid #333; padding: 7px 5px; cursor: pointer;}
+table th i {margin-left: 5px;}
+table td {border-bottom: 1px solid #ccc; padding: 9px 5px; max-width: 200px;}
+table td input {padding: 2px 5px;}
+table td select {padding: 5px 20px 5px 10px;}
+table td span.status {color: var(--main-color); text-transform: capitalize;}
+table td div.description {
+  line-height: 1.4;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.tabs {border-bottom: 1px solid #ccc;}
+.tabs li {float: left; padding: 10px 20px; font-size: 13px; text-transform: uppercase; cursor: pointer;}
+.tabs li.active {background-color: var(--main-color); color: white;}
+
+.tab-content {display: none; margin-top: 25px;}
+.tab-content.show {display: block;}
+
+.link {color: var(--main-color); font-size: 13px;}
+
+.clearfix:before, .clearfix:after {content: '\0020'; display: block; overflow: hidden; visibility: hidden;
+    width:0; height: 0;}
+.clearfix:after {clear: both;}
+.clearfix {zoom: 1;}
+.sub-title {font-weight: 500;}
+
+#main {min-height: 460px; padding: 0 12px; margin-top: 65px;}
+
+.wrapper {max-width: 1200px; margin: 0 auto;}
+@media only screen and (max-width: 1200px) {
+  .wrapper {padding: 0 12px;}
+}
+
+form {max-width: 800px;}
+form div.action {margin-top: 25px;}
+form .notify {padding: 0; font-style: italic; color: var(--danger); opacity: 0; visibility: hidden; height: 0; transition: all 0.3s;}
+form .notify.success {color: var(--main-color); font-style: normal;}
+form .notify.active {padding: 20px 0; height: auto; opacity: 1; visibility: visible;}
+
+.list-checkbox {}
+.list-checkbox li {
+  padding: 10px 0;
+}
+.list-checkbox .container {
+  display: block;
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.list-checkbox .container span {
+  margin-right: 35px;
+}
+.list-checkbox .container input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.list-checkbox .container .checkmark {
+  position: absolute;
+  top: -2px;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border: 2px solid var(--border);
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s;
+}
+.list-checkbox .container .checkmark:after {
+  left: 5px;
+  top: 2px;
+  width: 4px;
+  height: 8px;
+  border: solid var(--main-color);
+  border-width: 0 2px 2px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.list-checkbox .container:hover input[type="checkbox"] ~ .checkmark {border: 2px solid var(--text);}
+.list-checkbox .container input[type="checkbox"]:checked ~ .checkmark {border: 2px solid var(--main-color);}
+.list-checkbox .container input[type="checkbox"]:checked ~ .checkmark:after {visibility: visible; opacity: 1;}
+
+/*Toolbar at the manage pages*/
+.toolbar {margin-bottom: 20px;}
+.toolbar > * {float: left;}
+.toolbar select {padding-left: 15px; padding-right: 15px; min-width: 60px;}
+
+.toolbar .filter > * {float: left; border-right: 0;}
+
+.toolbar .search {}
+.toolbar .search > * {float: left;}
+.toolbar .search > input {padding-top: 7px; padding-bottom: 7px; border: 1px solid var(--border);}
+.toolbar .search button {position: relative; left: -1px; padding: 8px 25px; text-transform: capitalize; font-size: 14px;}
+
+.toolbar .pagination {float: right;}
+.toolbar .pagination span {margin-left: 10px; margin-right: 5px;}
+
+@media only screen and (max-width: 1178px) {
+  .toolbar .filter, 
+  .toolbar .pagination {float: none; display: block;}
+  .toolbar .pagination {margin-top: 10px;}
+  .toolbar .pagination span:first-child {margin-left: 0;}
+}
+@media only screen and (max-width: 820px) {
+  .toolbar .filter > * {float: none;}
+  .toolbar .filter > select {display: inline-block; vertical-align: top; border-right: 1px solid #a9a9a9;}
+  .toolbar .search {margin-top: 10px;}
+}
+/*End stylessheets for Toolbar*/
+
+div.input {margin-bottom: 12px; position: relative; box-sizing: border-box;}
+div.input label {display: block; text-align: left; position: absolute; margin: 10px 8px; transition: all 0.3s;}
+div.input input, div.input select {font-family: 'Roboto', sans-serif; font-size: 14px; font-weight: 400; padding: 15px 7px 5px 7px; width: 100%; outline: none; border: 1px solid; border-color: var(--border); box-sizing: border-box; transition: all 0.3s;}
+div.input.focused input, div.input.active input {border-color: var(--main-color);}
+div.input.focused label, div.input.active label {margin: 2px 8px; font-size: 11px;}
+
+div.col2 {}
+div.col2 div.input {display: inline-block !important; vertical-align: top; width: 49% !important;}
+
+@media only screen and (max-width: 920px) {
+  div.col2 div.input {
+    display: block !important;
+    width: 100% !important;
+  }
+}
+
+div.head-content {}
+div.head-content h1.title {font-weight: 300;}
+div.head-content .feature-img {text-align: center; margin-top: 25px;}
+div.head-content .feature-img img {width: 110px; max-width: 100%;}
+
+div.body-content {margin-top: 25px;}
+
+#main-admin div.head-content h1.title {font-size: 22px;}
+#main-admin div.head-content {position: relative;}
+#main-admin div.head-content div.action {position: fixed; top: 85px; right: 12px; z-index: 2;}
+#main-admin div.head-content div.action a.button {
+  padding: 7px 15px;
+    font-size: 13px;
+    text-transform: capitalize;
+    margin-left: 5px;
+    background-color: #1d3642;
+    opacity: 0.65;
+    transition: opacity 0.3s;
+}
+#main-admin div.head-content div.action a.button:hover {opacity: 1;}
+#main-admin div.body-content {margin-top: 15px;}
+
+#main-admin div.input {display: block; width: 100%; margin: 5px 0; padding: 0px;}
+#main-admin div.input p {width: 20%; text-align: right; padding: 15px; padding-top: 7px;}
+#main-admin div.input input, #main-admin div.input textarea {width: 80%; max-width: 500px;}
+#main-admin div.input textarea {height: 150px; outline: none; padding: 7px; box-sizing: border-box;}
+#main-admin div.input textarea:focus {border-color: #5fbaea;}
+#main-admin div.input select { max-width: 300px; padding: 11px 20px 11px 10px; border: 1px solid #cccccc; outline: none; margin: 0; /*-webkit-appearance: none;*/ }
+#main-admin div.input select:focus {border-color: #5fbaea;}
+#main-admin div.input p, #main-admin div.input input {display: inline-block; vertical-align: top; padding: 10px 7px; width: 300px;}
+#main-admin div.input label.item {font-weight: 300; padding: 5px;}
+#main-admin div.input .required {color: red; }
+#main-admin div.input .invalid {position: relative; top: 4px; padding-left: 2px;}
+
+#main-admin div.input label {position: static; margin-left: 0; display: block; margin-bottom: 5px; font-weight: 500; width: 100%; text-align: left;}
+#main-admin div.input label > input {width: auto;}
+
+#main-admin div.input input:focus,
+#main-admin div.input textarea:focus,
+#main-admin div.input select:focus {
+  border-color: 1px solid var(--border-dark);
+}
+
+@media only screen and (max-width: 920px) {
+  #main-admin div.input { padding: 0 10px 10px 0; margin: 0; white-space: nowrap; }
+    #main-admin div.input p { display: block; padding: 0; margin: 0; text-align: left; }
+    #main-admin div.input input, #main-admin div.input textarea { display: block; width: 100%; }
+    #main-admin div.input input[type=checkbox] { display: inline-block; }
+    #main-admin div.input .invalid { display: block; font-style: italic; }
+}
+
+@media only screen and (max-width: 760px) {
+  #main-admin {margin-left: 0 !important;}
+}
+
+@media only screen and (max-width: 520px) {
+  #main-admin div.head-content div.action {
+    position: relative;
+    top: 0;
+    right: 0;
+    margin-bottom: 20px;
+  }
+}
