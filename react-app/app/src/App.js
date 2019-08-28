@@ -17,6 +17,7 @@ import ManageStudents   from './modules/Admin/ManageStudents/ManageStudents/Mana
 import ManageTeachers   from './modules/Admin/ManageTeachers/ManageTeachers/ManageTeachers';
 import ManageSubjects   from './modules/Admin/ManageSubjects/ManageSubjects/ManageSubjects';
 import ModifyClass      from './modules/Admin/ManageClasses/ModifyClass/ModifyClass';
+import ModifyTeacher    from './modules/Admin/ManageTeachers/ModifyTeacher/ModifyTeacher';
 import PageNotFound     from './modules/PageNotFound/PageNotFound';
 
 import { PrivateRoute } from './modules/Base/PrivateRoute/index';
@@ -42,6 +43,8 @@ function App() {
 								<PrivateRoute path="/admin/classes/edit/:id" component={ ModifyClass } />
 								<PrivateRoute exact path="/admin/students" component={ ManageStudents } />
 								<PrivateRoute exact path="/admin/teachers" component={ ManageTeachers } />
+								<PrivateRoute path="/admin/teachers/create" component={ ModifyTeacher } />
+								<PrivateRoute path="/admin/teachers/edit/:id" component={ ModifyTeacher } />
 								<PrivateRoute exact path="/admin/subjects" component={ ManageSubjects } />
 								
 								<Route component={ PageNotFound }/>

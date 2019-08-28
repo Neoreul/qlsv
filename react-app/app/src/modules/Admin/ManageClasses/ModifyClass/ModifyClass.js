@@ -93,7 +93,7 @@ class ModifyClass extends React.Component {
 					this.setState({ isDone: true });
 
 					if(!isContinue) {
-						this.setState({ classItem: {} }, () => {
+						this.setState({ classItem: intitalClassItem }, () => {
 							this.props.history.push("/admin/classes");
 						});
 					}

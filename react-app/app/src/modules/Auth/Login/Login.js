@@ -31,10 +31,13 @@ class Login extends React.Component {
 	}
 
 	loginSubmit(value) {
+
+		// console.log("login submit: ", value);
+
 		this.setState({ isLoggedIn: value }, () => {
 			this.setMessage();
 
-			if(this.state.isLoggedIn) {
+			if(value) {
 				setTimeout(() => {
 					this.props.history.push('/admin/dashboard');
 				}, 1500);

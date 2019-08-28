@@ -29,7 +29,7 @@ class UserMenu extends React.Component {
 		return (
 			<ul className="menu-account">
 				<li>
-					<Link to="/admin">
+					<Link to="/admin/dashboard">
 						<i className="fa fa-user-circle-o" aria-hidden="true" style={{marginRight: '5px'}}></i>
 						<span>Hi, {this.props.user.first_name}</span>
 					</Link>
