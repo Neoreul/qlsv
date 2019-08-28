@@ -21,6 +21,9 @@ class Menu extends React.Component {
 	}
 
 	render() {
+
+		// console.log(this.props);
+
 		const { isLoggedIn, user } = this.props;
 		let menu;
 
@@ -39,6 +42,9 @@ class Menu extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+
+	console.log(state.user);
+
 	return {
 		user: state.user.user,
 		isLoggedIn: state.user.isLoggedIn
