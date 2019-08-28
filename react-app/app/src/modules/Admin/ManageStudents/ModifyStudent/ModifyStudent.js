@@ -94,7 +94,8 @@ class ModifyStudent extends React.Component {
 
 		getStudent(Number(studentId))
 			.then(res => {
-				this.setState({ studentItem: res.data }, () => {
+				let student = res.data;
+				this.setState({ studentItem: student }, () => {
 					this.getSubjects();
 				});
 			})
@@ -130,7 +131,7 @@ class ModifyStudent extends React.Component {
 							this.props.history.push("/admin/students");
 						});
 					} else {
-						this.setState({ studentItem });
+						this.setState();
 					}
 				}
 
@@ -240,7 +241,7 @@ class ModifyStudent extends React.Component {
 										<label htmlFor="age">
 											Age
 										</label>
-										<select onChange={(e) => {this.onChangeStudentItem('age', e.target.value)}}>
+										<select value={studentItem.age} onChange={(e) => {this.onChangeStudentItem('age', e.target.value)}}>
 											<option key="noage" value=""></option>
 											<option key="15" value="15">15</option>
 											<option key="16" value="16">16</option>

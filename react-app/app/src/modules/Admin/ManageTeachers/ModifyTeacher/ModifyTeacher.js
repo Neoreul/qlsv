@@ -80,7 +80,10 @@ class ModifyTeacher extends React.Component {
 
 		getTeacher(Number(teacherId))
 			.then(res => {
-				this.setState({ teacherItem: res.data }, () => {
+				let teacher = res.data;
+				teacher["age"] = teacher["age"].toString();
+
+				this.setState({ teacherItem: teacher }, () => {
 					this.getSubjects();
 				});
 			})
@@ -224,7 +227,7 @@ class ModifyTeacher extends React.Component {
 										<label htmlFor="age">
 											Age
 										</label>
-										<select onChange={(e) => {this.onChangeTeacherItem('age', e.target.value)}}>
+										<select value={teacherItem.age} onChange={(e) => {this.onChangeTeacherItem('age', e.target.value)}}>
 											<option value=""></option>
 											<option value="23">23</option>
 											<option value="24">24</option>
