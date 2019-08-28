@@ -3,17 +3,9 @@ import React from 'react';
 import { getClass, removeClass, createOrModifyClass } from '../ManageClasses.services';
 import { getTeachers } from '../../ManageTeachers/ManageTeachers.services';
 
-import Admin from '../../Admin';
+import { Class } from './Class';
 
-const intitalClassItem = {
-	class_number: "",
-	name: "",
-	started_year: "",
-	ended_year: "",
-	homeroom_teacher: "",
-	description: "",
-	status: "opening"
-};
+import Admin from '../../Admin';
 
 class ModifyClass extends React.Component {
 	constructor(props) {
@@ -21,7 +13,7 @@ class ModifyClass extends React.Component {
 		this.state = {
 			title    : "",
 			classId  : "",
-			classItem: intitalClassItem,
+			classItem: Class,
 			isError  : false,
 			notify   : "",
 			isDone   : false,
@@ -59,7 +51,7 @@ class ModifyClass extends React.Component {
 			});
 		} else {
 			this.setState({
-				classItem: intitalClassItem,
+				classItem: Class,
 				title: 'Create Class'
 			});
 		}
@@ -93,7 +85,7 @@ class ModifyClass extends React.Component {
 					this.setState({ isDone: true });
 
 					if(!isContinue) {
-						this.setState({ classItem: intitalClassItem }, () => {
+						this.setState({ classItem: Class }, () => {
 							this.props.history.push("/admin/classes");
 						});
 					}
@@ -214,7 +206,7 @@ class ModifyClass extends React.Component {
 									Homeroom Teacher
 									<span className="required">*</span>
 								</label>
-								<select value={classItem.homeroon_teacher} onChange={(e) => this.onChangeClassItem("homeroom_teacher", e.target.value)}>
+								<select value={classItem.homeroom_teacher} onChange={(e) => this.onChangeClassItem("homeroom_teacher", e.target.value)}>
 									<option key="none_homeroom_teacher" value=""></option>
 									{teachers.map((item, index) => (
 										<option key={index} value={item._id}>{item.first_name} {item.last_name}</option>

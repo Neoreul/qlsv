@@ -1,5 +1,5 @@
 import { POST } from '../../Utils/restfulAPI';
-import { StudentAPI } from './ManageStudent.api';
+import { StudentAPI } from './ManageStudents.api';
 
 export const getStudents = (data) => {
 	return POST(StudentAPI.GET_STUDENTS, data);

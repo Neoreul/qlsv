@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { getStudents } from '../ManageStudent.services';
+import { getStudents } from '../ManageStudents.services';
 import { getClasses }  from '../../ManageClasses/ManageClasses.services';
 import { getSubjects } from '../../ManageSubjects/ManageSubjects.services';
 
@@ -69,7 +69,7 @@ class ManageStudents extends React.Component {
 		.then(res => {
 			let resData = res.data;
 
-			console.log("students: ", resData);
+			// console.log("students: ", resData);
 
 			this.setState({ 
 				students: resData.students,
@@ -124,9 +124,9 @@ class ManageStudents extends React.Component {
 										this.viewPage();
 									});
 								}}>
-									<option value="all">All Classes</option>
+									<option key="all_classes" value="all">All Classes</option>
 									{ classes.map((item, index) => (
-										<option key={item._id} value={item._id}>{item.name}</option>
+										<option key={index} value={item._id}>{item.name}</option>
 									)) }
 								</select>
 								<select className="subjects" onChange={(e) => {
@@ -134,9 +134,9 @@ class ManageStudents extends React.Component {
 										this.viewPage();
 									});
 								}}>
-									<option value="all">All Subjects</option>
+									<option key="all_subjects" value="all">All Subjects</option>
 									{ subjects.map((item, index) => (
-										<option key={item._id} value={item._id}>{item.name}</option>
+										<option key={index} value={item._id}>{item.name}</option>
 									)) }
 								</select>
 								<div className="search clearfix">
@@ -216,13 +216,13 @@ class ManageStudents extends React.Component {
 		for(let i = 0; i < studentsLength; i++) {
 			let children = [];
 
-			children.push(<td>{students[i].student_number}</td>);
-			children.push(<td>{students[i].first_name}</td>);
-			children.push(<td>{students[i].last_name}</td>);
-			children.push(<td>{students[i].email}</td>);
-			children.push(<td><span className="status">{students[i].status}</span></td>);
-			children.push(<td>{myDateFormat(students[i].date_modified)}</td>);
-			children.push(<td>
+			children.push(<td key={students[i]._id + '1'}>{students[i].student_number}</td>);
+			children.push(<td key={students[i]._id + '2'}>{students[i].first_name}</td>);
+			children.push(<td key={students[i]._id + '3'}>{students[i].last_name}</td>);
+			children.push(<td key={students[i]._id + '4'}>{students[i].email}</td>);
+			children.push(<td key={students[i]._id + '5'}><span className="status">{students[i].status}</span></td>);
+			children.push(<td key={students[i]._id + '6'}>{myDateFormat(students[i].date_modified)}</td>);
+			children.push(<td key={students[i]._id + '7'}>
 				<Link to={`/admin/students/edit/${students[i]._id}`}>
 					<i className="fa fa-pencil-square-o" aria-hidden="true"></i>
 					Edit

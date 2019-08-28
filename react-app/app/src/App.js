@@ -18,6 +18,8 @@ import ManageTeachers   from './modules/Admin/ManageTeachers/ManageTeachers/Mana
 import ManageSubjects   from './modules/Admin/ManageSubjects/ManageSubjects/ManageSubjects';
 import ModifyClass      from './modules/Admin/ManageClasses/ModifyClass/ModifyClass';
 import ModifyTeacher    from './modules/Admin/ManageTeachers/ModifyTeacher/ModifyTeacher';
+import ModifySubject    from './modules/Admin/ManageSubjects/ModifySubject/ModifySubject';
+import ModifyStudent    from './modules/Admin/ManageStudents/ModifyStudent/ModifyStudent';
 import PageNotFound     from './modules/PageNotFound/PageNotFound';
 
 import { PrivateRoute } from './modules/Base/PrivateRoute/index';
@@ -42,10 +44,14 @@ function App() {
 								<PrivateRoute path="/admin/classes/create" component={ ModifyClass } />
 								<PrivateRoute path="/admin/classes/edit/:id" component={ ModifyClass } />
 								<PrivateRoute exact path="/admin/students" component={ ManageStudents } />
+								<PrivateRoute path="/admin/students/create" component={ ModifyStudent } />
+								<PrivateRoute path="/admin/students/edit/:id" component={ ModifyStudent } />
 								<PrivateRoute exact path="/admin/teachers" component={ ManageTeachers } />
 								<PrivateRoute path="/admin/teachers/create" component={ ModifyTeacher } />
 								<PrivateRoute path="/admin/teachers/edit/:id" component={ ModifyTeacher } />
 								<PrivateRoute exact path="/admin/subjects" component={ ManageSubjects } />
+								<PrivateRoute path="/admin/subjects/create" component={ ModifySubject } />
+								<PrivateRoute path="/admin/subjects/edit/:id" component={ ModifySubject } />
 								
 								<Route component={ PageNotFound }/>
 								{/*<Redirect to="/404" />*/}

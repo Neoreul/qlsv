@@ -100,7 +100,7 @@ class ModifyTeacher extends React.Component {
 
 		teacherItem["subjects"] = [];
 		this.state.subjects.forEach(s => {
-			if(s["checked"] === "true") {
+			if(s["checked"] === true) {
 				teacherItem["subjects"].push(s["_id"]);
 			}
 		});
@@ -225,6 +225,7 @@ class ModifyTeacher extends React.Component {
 											Age
 										</label>
 										<select onChange={(e) => {this.onChangeTeacherItem('age', e.target.value)}}>
+											<option value=""></option>
 											<option value="23">23</option>
 											<option value="24">24</option>
 											<option value="25">25</option>
@@ -249,14 +250,19 @@ class ModifyTeacher extends React.Component {
 										<label htmlFor="faculty">
 											Faculty
 										</label>
-										<input type="text" id="faculty" name="faculty" value={teacherItem.faculty} onChange={(e) => this.onChangeTeacherItem("faculty", e.target.value)} />
+										<select value={teacherItem.faculty} onChange={(e) => this.onChangeTeacherItem("faculty", e.target.value)}>
+											<option value="it">Information Teachnology</option>
+											<option value="ms">Mathematics and Statistics</option>
+										</select>
 									</div>
 
 									<div className="input">
 										<label htmlFor="marjor">
 											Marjor
 										</label>
-										<input type="text" id="marjor" name="marjor" value={teacherItem.marjor} onChange={(e) => this.onChangeTeacherItem("marjor", e.target.value)} />
+										<select value={teacherItem.marjor} onChange={(e) => this.onChangeTeacherItem("marjor", e.target.value)}>
+											<option value="knpm">Software Engineer</option>
+										</select>
 									</div>
 
 								</div>
@@ -387,7 +393,7 @@ class ModifyTeacher extends React.Component {
 		this.setState((prevState) => {
 			let subjects = [...prevState.subjects];
 
-			item["checked"] = false;
+			item["checked"] = !item["checked"];
 
 			subjects[index] = item;
 
